@@ -1,0 +1,63 @@
+Users:
+ - email
+ - password
+ - firstName
+ - lastName
+ - ??age 18??
+ - role_id
+ 
+Roles:
+ - role_name
+ 
+Articles:
+ - title
+ - image_ids
+ - video_ids
+ - palce_id
+ - pricePerDay
+ - userRating
+ - comments
+ - extras_ids
+ - contacts
+ 
+Extras: 
+ - name
+ - article_id
+ 
+Images:
+ - name
+ - file
+ 
+Videos:
+ - name
+ - file
+ 
+UserComments:
+ - user_id
+ - article_id
+ - comment 
+ 
+??UserRatings:
+ - user_id
+ - article_id
+ - rating
+ 
+Places:
+ - name
+ - ??location??
+ 
+Events:
+ - name
+ - category (Evenet || Food&Drink)
+ - place_id
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+??favorites??
+ 
+
+ 
