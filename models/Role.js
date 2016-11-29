@@ -20,9 +20,9 @@ module.exports.initialize = () => {
       Role.create({name: 'Admin'})
     }
   })
-  Role.findOne({name: 'Booker'}).then(role => {
+  Role.findOne({name: 'Editor'}).then(role => {
     if (!role) {
-      Role.create({name: 'Booker'})
+      Role.create({name: 'Editor'})
     }
   })
 }
