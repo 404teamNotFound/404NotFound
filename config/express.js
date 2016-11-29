@@ -36,6 +36,18 @@ module.exports = (app, config) => {
     }
   })
 
+  app.use((req, res, next) => {
+    if(req.user) {
+      res.locals.user = req.user
+      req.user.isInRole('Editor').then(isEditor => {
+        res.locals.isEditor = isEditor
+        next()
+      })
+    } else {
+      next()
+    }
+  })
+
   //Public folder
   app.use(express.static(path.join(config.rootFolder, 'public')))
 

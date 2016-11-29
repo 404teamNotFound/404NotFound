@@ -45,37 +45,46 @@ module.exports = User
 
 
 module.exports.seedAdmin = () => {
-  /*
   let email = 'admin@admin.com'
   User.findOne({email: email}).then(admin => {
     if(!admin) {
-      Role.findOne({name: 'Admin'}).then(role => {
-        let salt = encryption.generateSalt()
-        let passwordHash = encryption.hashPassword('root', salt)
+      Role.findOne({name: 'Admin'}).then(adminRole => {
+        Role.findOne({name: 'Editor'}).then(editorRole => {
+          let salt = encryption.generateSalt()
+          let passwordHash = encryption.hashPassword('root', salt)
 
-        let roles = []
-        roles.push(role.id)
-        let user = {
-          email: email,
-          passwordHash: passwordHash,
-          fullName: 'Administrator',
-          articles: [],
-          salt: salt,
-          roles: roles
-        }
-        User.create(user).then(user => {
-          role.users.push(user.id)
-          role.save(err => {
-            if (err) {
-              console.log(err.message)
-            } else {
-              console.log('Admin created successfully!')
-            }
+          let roles = []
+          roles.push(adminRole.id)
+          roles.push(editorRole.id)
+          let user = {
+            email: email,
+            passwordHash: passwordHash,
+            fullName: 'Administrator',
+            salt: salt,
+            roles: roles
+          }
+          User.create(user).then(user => {
+            adminRole.users.push(user.id)
+            adminRole.save(err => {
+              if (err) {
+                console.log(err.message)
+              } else {
+                console.log('Admin created successfully!')
+              }
+            })
+            editorRole.users.push(user.id)
+            editorRole.save(err => {
+              if (err) {
+                console.log(err.message)
+              } else {
+                console.log('Editor created successfully!')
+              }
+            })
           })
         })
       })
     } else {
       console.log('Admin already created!')
     }
-  })*/
+  })
 }
