@@ -11,6 +11,7 @@ Roles:
  
 Articles:
  - title
+ - price
  - image_ids
  - video_ids
  - palce_id

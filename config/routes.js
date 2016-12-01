@@ -1,6 +1,7 @@
 const homeController = require('./../controllers/home')
 const userController = require('./../controllers/user')
-const editorController = require('./../controllers/editor')
+const articleController = require('./../controllers/article')
+const extraController = require('./../controllers/editor/extra')
 
 module.exports = (app) => {
   app.get('/', homeController.index)
@@ -28,9 +29,15 @@ module.exports = (app) => {
     }
   })
   //EDITOR AUTHENTICATED
-  app.get('/editor/articles/all', editorController.getAllArticles)
+  app.get('/editor/article/all', articleController.getArticlesAll)
 
-  app.get('/editor/articles/create', editorController.getCreateArticle)
+  app.get('/editor/article/create', articleController.getArticleCreate)
+  app.post('/editor/article/create', articleController.postArticleCreate)
+
+  app.get('/editor/extra/all', extraController.getExtrasAll)
+
+  app.get('/editor/extra/create', extraController.getExtraCreate)
+  app.post('/editor/extra/create', extraController.postExtraCreate)
 
   app.use((req, res, next) => {
     if (req.isAuthenticated()) {

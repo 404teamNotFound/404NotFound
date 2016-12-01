@@ -27,7 +27,8 @@
                                    role="button" aria-expanded="false">Editor<span
                                         class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="/editor/articles/all">Articles</a></li>
+                                    <li><a href="/editor/article/all">Articles</a></li>
+                                    <li><a href="/editor/extra/all">Extras</a></li>
                                 </ul>
                             </li>
                         {{/if}}
@@ -37,13 +38,12 @@
                                    role="button" aria-expanded="false">Admin<span
                                         class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="/admin/user/all">Users</a></li>
-                                    <li><a href="/admin/category/all">Categories</a></li>
+                                    <li><a href="#">Users</a></li>
+                                    <li><a href="#">Categories</a></li>
                                 </ul>
                             </li>
                         {{/if}}
-                        <li><a href="/user/details">Welcome({{user.email}})</a></li>
-                        <li><a href="/article/create">New Article</a></li>
+                        <li><a href="#">Welcome({{user.email}})</a></li>
                         <li><a href="/user/logout">Logout</a></li>
                     </ul>
                 </div>

@@ -84,7 +84,7 @@ module.exports.seedAdmin = () => {
         })
       })
     } else {
-      console.log('Admin already created!')
+      console.log('Admin/Editor already created!')
     }
   })
 }
