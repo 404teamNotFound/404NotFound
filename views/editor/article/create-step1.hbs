@@ -1,0 +1,51 @@
+<div class="container body-content span=8 offset=2">
+    <div class="well">
+        <form action="/editor/article/create/step/1" method="post" class="form-horizontal">
+            <fieldset>
+                <legend>Create new ######## - STEP 1 - Enter Details</legend>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Title</label>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" id="inputTitle" name="inputTitle" placeholder="Title"
+                               value="{{ articleArgs.inputTitle }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Price</label>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" id="inputPrice" name="inputPrice" placeholder="Price"
+                               value="{{ articleArgs.inputPrice }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Location</label>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" id="inputLocation" name="inputLocation" placeholder="Location"
+                               value="{{ articleArgs.inputLocation }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Description</label>
+                    <div class="col-sm-4">
+                        <textarea class="form-control" rows="5" name="inputDescription">{{ articleArgs.inputDescription }}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-4">
+
+                        <button type="reset" class="btn btn-default">Cancel</button>
+
+                        <button type="submit" class="btn btn-primary">Next</button>
+
+                        {{#each articleArgs.inputImages}}
+                            <input type="hidden" name="inputImages" value="{{ this }}">
+                        {{/each}}
+                        {{#each articleArgs.inputExtras}}
+                            <input type="hidden" name="inputExtras" value="{{ this }}">
+                        {{/each}}
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

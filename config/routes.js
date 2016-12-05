@@ -2,6 +2,7 @@ const homeController = require('./../controllers/home')
 const userController = require('./../controllers/user')
 const articleController = require('./../controllers/article')
 const extraController = require('./../controllers/editor/extra')
+const photoController = require('./../controllers/photo')
 
 module.exports = (app) => {
   app.get('/', homeController.index)
@@ -14,6 +15,10 @@ module.exports = (app) => {
   app.post('/user/login', userController.loginPost)
   //
   app.get('/user/logout', userController.logout)
+
+  //TODO Security check for authenticated user
+  app.post('/upload_photos', photoController.uploadPhotos)
+
 
   app.use((req, res, next) => {
     if (req.isAuthenticated()) {
@@ -31,8 +36,9 @@ module.exports = (app) => {
   //EDITOR AUTHENTICATED
   app.get('/editor/article/all', articleController.getArticlesAll)
 
-  app.get('/editor/article/create', articleController.getArticleCreate)
-  app.post('/editor/article/create', articleController.postArticleCreate)
+  app.get('/editor/article/create/step/:step', articleController.getArticleCreate)
+  app.post('/editor/article/create/step/:step', articleController.postArticleCreate)
+
 
   app.get('/editor/extra/all', extraController.getExtrasAll)
 

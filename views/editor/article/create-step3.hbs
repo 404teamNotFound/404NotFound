@@ -1,0 +1,37 @@
+<div class="container body-content span=8 offset=2">
+    <div class="well">
+        <form action="/editor/article/create/step/3" method="post" class="form-horizontal">
+            <fieldset>
+                <legend>Create new ######## - STEP 3 - Add Extras</legend>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="role">Extras</label>
+                    {{#each extras}}
+                        <div class="col-sm-4">
+                            <input type="checkbox" id="role" name="inputExtras" value="{{ this.id }}"
+                                {{#if this.checked }} checked {{/if}}/>
+                            {{ this.name }}
+                        </div>
+                    {{/each}}
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-4">
+
+                        <button type="submit" class="btn btn-primary" name="back" value="back">Back</button>
+
+                        <button type="reset" class="btn btn-default">Cancel</button>
+
+                        <button type="submit" class="btn btn-primary">Next</button>
+
+                        <input type="hidden" name="inputTitle" value="{{ articleArgs.inputTitle }}">
+                        <input type="hidden" name="inputPrice" value="{{ articleArgs.inputPrice }}">
+                        <input type="hidden" name="inputLocation" value="{{ articleArgs.inputLocation }}">
+                        <input type="hidden" name="inputDescription" value="{{ articleArgs.inputDescription }}">
+                        {{#each articleArgs.inputImages}}
+                            <input type="hidden" name="inputImages" value="{{ this }}">
+                        {{/each}}
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

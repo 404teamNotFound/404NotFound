@@ -38,3 +38,7 @@ jspm_packages
 
 # Remove IDEA folder
 .idea
+
+# Remove uploaded images
+public/images
+public/tmp_uploads
