@@ -21,17 +21,34 @@ function createArrayForSingleString(articleArgs, inputType) {
 
 module.exports = {
   getArticlesAll: (req, res) => {
-    res.render('editor/article/all')
+    Article.find().populate('author location').then(articles => {
+      res.render('editor/article/all', {articles: articles})
+    })
   },
   getArticleCreate: (req, res) => {
     let step = req.params.step
-    if (step === '1') {
+    //check if editing
+    let id = req.params.id
+    if (id) {
+      Article.findById(id).populate('location').then(article => {
+        let articleArgs = {
+          id: article.id,
+          inputTitle: article.title,
+          inputPrice: article.price,
+          inputLocation: article.location.name,
+          inputDescription: article.description,
+          inputImages: article.images,
+          inputExtras: article.extras,
+          inputContactEmail: article.contactEmail,
+          inputContactPhone: article.contactPhone,
+          inputContactWebSite: article.contactURL
+        }
+        res.render('editor/article/create-step1', {articleArgs: articleArgs})
+      })
+    } else {
       res.render('editor/article/create-step1')
-    } else if (step === '2') {
-      res.render('editor/article/create-step2')
-    } else if (step === '3') {
-      res.render('editor/article/create-step3')
     }
+
   },
   postArticleCreate: (req, res) => {
     let step = req.params.step
@@ -66,7 +83,7 @@ module.exports = {
 
       //check if back button is pressed
       if (articleArgs.back) {
-        res.render('editor/article/create-step1', {articleArgs: articleArgs, articleFiles: articleArgs.inputImages})
+        res.render('editor/article/create-step1', {articleArgs: articleArgs})
         return
       } else {
         if (errorMsg) {
@@ -75,8 +92,7 @@ module.exports = {
         } else {
           Extra.find({}).then(extras => {
             let populatedIsChecked = Extra.populateChecked(extras, articleArgs.inputExtras)
-            res.render('editor/article/create-step3', {articleArgs: articleArgs, extras: populatedIsChecked,
-              articleFiles: articleArgs.inputImages})
+            res.render('editor/article/create-step3', {articleArgs: articleArgs, extras: populatedIsChecked})
             return
           })
         }
@@ -88,10 +104,10 @@ module.exports = {
       if (articleArgs.back) {
         //Display images?
 
-        res.render('editor/article/create-step2', {articleArgs: articleArgs, articleFiles: articleArgs.inputImages})
+        res.render('editor/article/create-step2', {articleArgs: articleArgs})
         return
       } else {
-        res.render('editor/article/create-step4', {articleArgs: articleArgs, articleFiles: articleArgs.inputImages})
+        res.render('editor/article/create-step4', {articleArgs: articleArgs})
         return
       }
 
@@ -101,8 +117,7 @@ module.exports = {
       if (articleArgs.back) {
         Extra.find({}).then(extras => {
           let populatedIsChecked = Extra.populateChecked(extras, articleArgs.inputExtras)
-          res.render('editor/article/create-step3', {articleArgs: articleArgs, extras: populatedIsChecked,
-            articleFiles: articleArgs.inputImages})
+          res.render('editor/article/create-step3', {articleArgs: articleArgs, extras: populatedIsChecked})
           return
         })
       } else {
@@ -113,15 +128,62 @@ module.exports = {
           errorMsg = 'Please enter valid Phone Number!'
         } else if (!Article.validateURL(articleArgs.inputContactWebSite)) {
           errorMsg = 'Please enter valid Web Site Address!'
+        } else if(!articleArgs.inputTitle) {
+          errorMsg = 'Please enter valid Title! (STEP 1)'
+        } else if (!Article.validatePrice(articleArgs.inputPrice)) {
+          errorMsg = 'Please enter valid Price! (STEP 1)'
+        } else if (!articleArgs.inputLocation) {
+          errorMsg = 'Please enter valid Location! (STEP 1)'
+        } else if (!articleArgs.inputDescription) {
+          errorMsg = 'Please enter valid Description (STEP 1)'
         }
 
         if (errorMsg) {
-          res.render('editor/article/create-step4', {error: errorMsg, articleArgs: articleArgs,
-            articleFiles: articleArgs.inputImages})
+          res.render('editor/article/create-step4', {error: errorMsg, articleArgs: articleArgs})
         } else {
           //TODO VALIDATE ALL FIELDS AND CREATE ARTICLE
-          res.redirect('/editor/article/all')
-          return
+          let articleObj = {
+            title: articleArgs.inputTitle,
+            price: articleArgs.inputPrice,
+            description: articleArgs.inputDescription,
+            contactEmail: articleArgs.inputContactEmail,
+            contactPhone: articleArgs.inputContactPhone,
+            contactURL: articleArgs.inputContactWebSite,
+            author: req.user.id
+          }
+          let images = []
+          for (let image of articleArgs.inputImages) {
+            images.push(image)
+          }
+          articleObj.images = images
+          let extras = []
+          for (let extra of articleArgs.inputExtras) {
+            extras.push(extra)
+          }
+          articleObj.extras = extras
+
+          //Check if in create or edit mode
+          if (!articleArgs.id) {
+            //create
+            Article.create(articleObj).then(article => {
+              article.prepareInsert(articleArgs.inputLocation)
+              res.redirect('/editor/article/all')
+            }).catch(error => {
+              //TODO display error message (404 - template)
+              console.log(error)
+            })
+          } else {
+            //edit
+            Article.findOneAndUpdate({_id: articleArgs.id}, articleObj, {new: true}, (error, article) => {
+              if (error) {
+                //TODO display error message (404 - template)
+                console.log(error)
+              } else {
+                article.prepareInsert(articleArgs.inputLocation)
+                res.redirect('/editor/article/all')
+              }
+            })
+          }
         }
       }
     }

@@ -38,6 +38,8 @@ module.exports = (app) => {
 
   app.get('/editor/article/create/step/:step', articleController.getArticleCreate)
   app.post('/editor/article/create/step/:step', articleController.postArticleCreate)
+  app.get('/editor/article/edit/:id/step/:step', articleController.getArticleCreate)
+  app.post('/editor/article/edit/:id/step/:step', articleController.postArticleCreate)
 
 
   app.get('/editor/extra/all', extraController.getExtrasAll)

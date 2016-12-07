@@ -6,8 +6,11 @@ let articleSchema = mongoose.Schema(
     price: {type: Number, required: true},
     location: {type: mongoose.Schema.Types.ObjectId, ref: 'Location'},
     description: {type: String, required: true},
+    images: [{type: String}],
     extras: [{type: mongoose.Schema.Types.ObjectId, ref: 'Extra'}],
-    contacts: {type: String, required: true},
+    contactEmail: {type: String, required: true},
+    contactPhone: {type: String, required: true},
+    contactURL: {type: String},
     author: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User'},
     date: {type: Date, default: Date.now()}
   }
