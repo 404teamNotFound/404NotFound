@@ -62,6 +62,21 @@ section,
 summary {
   display: block;
 }
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::before {
+  content: '\25B6';
+  padding-right: 1em;
+}
+
+details[open] > summary::before {
+  content: '\25BC';
+}
+
+
 audio,
 canvas,
 progress,

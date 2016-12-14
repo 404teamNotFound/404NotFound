@@ -7,8 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel='stylesheet' href='stylesheets/style.css' />
+
+    <link rel='stylesheet' href='stylesheets/layout.css' />
+    <link rel='stylesheet' href='stylesheets/datepicker.css' />
     <script src="javascripts/jquery-1.10.2.js"></script>
     <script src="javascripts/bootstrap.js"></script>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/datepicker.js"></script>
+    <script type="text/javascript" src="js/eye.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
+    <script type="text/javascript" src="js/layout.js?ver=1.0.2"></script>
 </head>
 
 <body>
@@ -35,7 +44,7 @@
         </div>
     </header>
     <div class="container body-content span=8 offset=2">
-        <div class="well">
+        < class="well">
     <form action="" class="form-horizontal">
         <fieldset>
             <div class="form-group">
@@ -48,9 +57,40 @@
             To:
             <input type="date" name="to">
         </fieldset>
+
+        <center><div>
+            <p><a href="#" id="clearSelection">Clear selection</a></p>
+            <p>Flat mode, range selection, 3 calendars.</p>
+            <p id="date3"></p>
+
+        </div></center>
+        <div>
+
+            <p>
+                <input class="inputDate" id="inputDate" value="06/14/2008" />
+                <label id="closeOnSelect"><input type="checkbox" /> Close on selection</label>
+            </p>
+
+        </div>
+        <div id="widget">
+            <div id="widgetField">
+                <span>28 July, 2008 &divide; 31 July, 2008</span>
+                <a href="#">Select date range</a>
+            </div>
+            <div id="widgetCalendar">
+            </div>
+        </div>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
     </form>
             </div>
         </div>
+
+
+
 
 </body>
 </html>
