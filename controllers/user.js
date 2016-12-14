@@ -75,12 +75,15 @@ module.exports = {
           return
         }
 
-        let returnUrl = '/'
-        if (req.session.returnUrl) {
-          returnUrl = req.session.returnUrl
-          delete req.session.returnUrl
-        }
-        res.redirect(returnUrl)
+        user.isInRole('Editor').then(isEditor => {
+          let returnUrl = '/'
+          if (isEditor) returnUrl = '/editor/article/all'
+          if (req.session.returnUrl) {
+            returnUrl = req.session.returnUrl
+            delete req.session.returnUrl
+          }
+          res.redirect(returnUrl)
+        })
       })
     })
   },
