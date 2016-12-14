@@ -15,8 +15,8 @@ module.exports = (config) => {
 
   //REQUIRE MODULES HERE!
   require('./../models/Role').initialize()
-  require('./../models/User').seedAdmin()
   require('./../models/Article')
+  require('./../models/User').seedAdmin()
   require('./../models/Extra')
   require('./../models/Location')
 }

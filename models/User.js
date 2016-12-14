@@ -54,7 +54,7 @@ userSchema.method ({
     }
   },
   prepareDelete: function () {
-    Articles.findOneAndRemove({author: this.id}).then((articles, error) => {
+    Article.findOneAndRemove({author: this.id}).then((articles, error) => {
       if (error) {
         //TODO display error
         console.log(error)
