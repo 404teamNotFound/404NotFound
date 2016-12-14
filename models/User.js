@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 const Role = require('mongoose').model('Role')
+const Article = require('mongoose').model('Article')
 const encryption = require('./../utilities/encryption');
 
 let userSchema = mongoose.Schema(
@@ -51,6 +52,14 @@ userSchema.method ({
         role.save()
       })
     }
+  },
+  prepareDelete: function () {
+    Articles.findOneAndRemove({author: this.id}).then((articles, error) => {
+      if (error) {
+        //TODO display error
+        console.log(error)
+      }
+    })
   }
 });
 
