@@ -37,12 +37,13 @@
                         <input type="hidden" name="inputPrice" value="{{ articleArgs.inputPrice }}">
                         <input type="hidden" name="inputLocation" value="{{ articleArgs.inputLocation }}">
                         <input type="hidden" name="inputDescription" value="{{ articleArgs.inputDescription }}">
-                        {{#each articleFiles}}
+                        {{#each articleArgs.inputImages}}
                             <input type="hidden" name="inputImages" value="{{ this }}">
                         {{/each}}
                         {{#each articleArgs.inputExtras}}
                             <input type="hidden" name="inputExtras" value="{{ this }}">
                         {{/each}}
+                        <input type="hidden" name="id" value="{{ articleArgs.id }}">
                     </div>
                 </div>
             </fieldset>

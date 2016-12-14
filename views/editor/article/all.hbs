@@ -7,19 +7,21 @@
             <table class="table table-striped table-hover ">
                 <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Name</th>
+                    <th>Title</th>
+                    <th>Location</th>
+                    <th>Author</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 {{#each articles}}
                     <tr>
-                        <td>{{ this.id }}</td>
-                        <td>{{ this.name }}</td>
+                        <td>{{ this.title }}</td>
+                        <td>{{ this.location.name }}</td>
+                        <td>{{ this.author.email }}</td>
                         <td>
-                            <a href="/admin/category/edit/{{this.id}}">Edit</a>
-                            <a  href="/admin/category/delete/{{this.id}}">Delete</a>
+                            <a href="/editor/article/edit/{{this.id}}/step/1">Edit</a>
+                            <a  href="/editor/article/delete/{{this.id}}">Delete</a>
                         </td>
                     </tr>
                 {{/each}}

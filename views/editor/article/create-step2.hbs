@@ -19,9 +19,10 @@
                 <!-- Photos Album Container -->
                 <div id="album" class="row">
                     {{#each articleArgs.inputImages}}
-                        <div class="col-xs-6 col-md-4">
+                        <div class="col-xs-6 col-md-4" id="{{ this }}">
                             <a class="thumbnail" href="#">
                                 <img src="/{{ this }}" alt="{{ this }}">
+                                <span class="close" id="{{ this }}"></span>
                             </a>
                         </div>
                     {{/each}}
@@ -45,6 +46,10 @@
                         {{#each articleArgs.inputExtras}}
                             <input type="hidden" name="inputExtras" value="{{ this }}">
                         {{/each}}
+                        <input type="hidden" name="inputContactEmail" value="{{ articleArgs.inputContactEmail }}">
+                        <input type="hidden" name="inputContactPhone" value="{{ articleArgs.inputContactPhone }}">
+                        <input type="hidden" name="inputContactWebSite" value="{{ articleArgs.inputContactWebSite }}">
+                        <input type="hidden" name="id" value="{{ articleArgs.id }}">
                     </div>
                 </div>
             </fieldset>

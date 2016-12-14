@@ -1,0 +1,20 @@
+.close::before {
+    content: "✕";
+    font-size: 33px;
+}
+.close {
+    position: absolute;
+    top: 5px;
+    right: 24px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.thumbnail:hover {
+    cursor: default;
+}
+
+.thumbnail:hover .close {
+    color: #ff8c17;
+
+}
