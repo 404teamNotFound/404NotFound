@@ -21,31 +21,50 @@ function createArrayForSingleString(articleArgs, inputType) {
 
 module.exports = {
   getArticlesAll: (req, res) => {
-    Article.find().populate('author location').then(articles => {
-      res.render('editor/article/all', {articles: articles})
+    req.user.isInRole('Admin').then(isAdmin => {
+      if (isAdmin) {
+        Article.find().populate('author location').then(articles => {
+          res.render('editor/article/all', {articles: articles})
+        })
+      } else {
+        Article.find({author: req.user.id}).populate('author location').then(articles => {
+          res.render('editor/article/all', {articles: articles})
+        })
+      }
     })
+
   },
   getArticleCreate: (req, res) => {
     let step = req.params.step
     //check if editing
     let id = req.params.id
     if (id) {
+      //Edit Article
       Article.findById(id).populate('location').then(article => {
-        let articleArgs = {
-          id: article.id,
-          inputTitle: article.title,
-          inputPrice: article.price,
-          inputLocation: article.location.name,
-          inputDescription: article.description,
-          inputImages: article.images,
-          inputExtras: article.extras,
-          inputContactEmail: article.contactEmail,
-          inputContactPhone: article.contactPhone,
-          inputContactWebSite: article.contactURL
-        }
-        res.render('editor/article/create-step1', {articleArgs: articleArgs})
+        req.user.isAuthorized(req, article).then(isAuthorized => {
+          if (!isAuthorized) {
+            console.log('UNAUTHORIZED ACCESS ATTEMPT!')
+            res.redirect('/')
+            return
+          } else {
+            let articleArgs = {
+              id: article.id,
+              inputTitle: article.title,
+              inputPrice: article.price,
+              inputLocation: article.location.name,
+              inputDescription: article.description,
+              inputImages: article.images,
+              inputExtras: article.extras,
+              inputContactEmail: article.contactEmail,
+              inputContactPhone: article.contactPhone,
+              inputContactWebSite: article.contactURL
+            }
+            res.render('editor/article/create-step1', {articleArgs: articleArgs})
+          }
+        })
       })
     } else {
+      //Create Article
       res.render('editor/article/create-step1')
     }
 
@@ -174,18 +193,52 @@ module.exports = {
             })
           } else {
             //edit
-            Article.findOneAndUpdate({_id: articleArgs.id}, articleObj, {new: true}, (error, article) => {
-              if (error) {
-                //TODO display error message (404 - template)
-                console.log(error)
-              } else {
-                article.prepareInsert(articleArgs.inputLocation)
-                res.redirect('/editor/article/all')
-              }
+
+            //check if user is AUTHORIZED
+            Article.findById(articleArgs.id).then(article => {
+              req.user.isAuthorized(req, article).then(isAuthorized => {
+                if (!isAuthorized) {
+                  console.log('UNAUTHORIZED ACCESS ATTEMPT!')
+                  res.redirect('/')
+                  return
+                } else {
+                  //user is AUTHORIZED
+                  Article.findOneAndUpdate({_id: articleArgs.id}, articleObj, {new: true}, (error, article) => {
+                    if (error) {
+                      //TODO display error message (404 - template)
+                      console.log(error)
+                    } else {
+                      article.prepareInsert(articleArgs.inputLocation)
+                      res.redirect('/editor/article/all')
+                    }
+                  })
+                }
+              })
             })
           }
         }
       }
     }
+  },
+  getArticleDelete: (req, res) => {
+    let id = req.params.id
+    Article.findById(id).then(article => {
+      req.user.isAuthorized(req, article).then(isAuthorized => {
+        if (!isAuthorized) {
+          console.log('UNAUTHORIZED ACCESS ATTEMPT!')
+          res.redirect('/')
+          return
+        } else {
+          Article.findOneAndRemove({_id: id}).then((article, error) => {
+            if (error) {
+              //TODO display error
+              console.log(error)
+            } else {
+              res.redirect('/editor/article/all')
+            }
+          })
+        }
+      })
+    })
   }
 }

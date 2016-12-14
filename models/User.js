@@ -20,6 +20,13 @@ userSchema.method ({
 
     return isSamePasswordHash;
   },
+  isAuthor: function (article) {
+    if(!article) {
+      return false
+    }
+    let isAuthor = article.author.equals(this.id)
+    return isAuthor
+  },
   isInRole: function (roleName) {
     return Role.findOne({name: roleName}).then(role => {
       if(!role) {
@@ -27,6 +34,14 @@ userSchema.method ({
       }
       let inRoles = this.roles.indexOf(role._id) !== -1
       return inRoles
+    })
+  },
+  isAuthorized: function (req, article) {
+    return req.user.isInRole('Admin').then(isAdmin => {
+      if (!isAdmin && !req.user.isAuthor(article)) {
+        return false
+      }
+      return true
     })
   },
   prepareInsert: function () {

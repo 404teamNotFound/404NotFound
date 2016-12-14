@@ -1,6 +1,11 @@
 <div class="container body-content">
     <div class="well">
-        <h2>All Articles -
+        <h2>
+            {{#if isAdmin}}
+                All Articles -
+            {{else}}
+                My Articles -
+            {{/if}}
             <a href="/editor/article/create/step/1" class="btn btn-warning">Create New</a>
         </h2>
         <div class="row">
