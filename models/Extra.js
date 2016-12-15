@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const Article = require('mongoose').model('Article')
 
 let extraSchema = mongoose.Schema(
   {
@@ -18,6 +19,25 @@ extraSchema.statics.populateChecked = (extras, arrayIds) => {
     return extras
   }
 }
+
+extraSchema.method ({
+  prepareDelete: function () {
+    Article.find({extras: this.id}).then(articles => {
+      for (let article of articles) {
+        let index = article.extras.indexOf(this.id)
+        if (index !== -1) {
+          article.extras.splice(index, 1)
+          article.save((err) => {
+            if (err) {
+              //TODO display error message (404 - template)
+              console.log(error)
+            }
+          })
+        }
+      }
+    })
+  }
+})
 
 const Extra = mongoose.model('Extra', extraSchema)
 

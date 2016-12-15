@@ -1,244 +1,37 @@
-const multiparty = require('multiparty')
-const Article = require('mongoose').model('Article')
-const Extra = require('mongoose').model('Extra')
 const Location = require('mongoose').model('Location')
-
-// function getFirstElementsFromMulty(fields) {
-//   let newArgs = {}
-//   for(let arg in fields) {
-//     newArgs[arg] = fields[arg][0]
-//   }
-//   return newArgs
-// }
-
-function createArrayForSingleString(articleArgs, inputType) {
-  if (articleArgs[inputType]) {
-    if (typeof articleArgs[inputType] === 'string')
-      articleArgs[inputType] = [articleArgs[inputType]]
-  }
-  return articleArgs
-}
+const Article = require('mongoose').model('Article')
 
 module.exports = {
-  getArticlesAll: (req, res) => {
-    req.user.isInRole('Admin').then(isAdmin => {
-      if (isAdmin) {
-        Article.find().populate('author location').then(articles => {
-          res.render('editor/article/all', {articles: articles})
+  getIndex: (req, res) => {
+    res.render('home/index', {title: "404 Not Found"})
+  },
+  postArticlesByLocation: (req, res) => {
+    let searchArgs = req.body
+
+    Location.findOne({name: { $regex: new RegExp("^" + searchArgs.location.toLowerCase(), "i") }}).then(location => {
+      if (location) {
+        Article.find({location: location._id}).populate('author location').then(articles => {
+          if (articles) {
+            res.render('article/all', {articles: articles, searched: searchArgs, isMatches: true})
+          } else {
+            res.render('article/all', {searched: searchArgs, isMatches: false})
+          }
         })
       } else {
-        Article.find({author: req.user.id}).populate('author location').then(articles => {
-          res.render('editor/article/all', {articles: articles})
-        })
+        res.render('article/all', {searched: searchArgs, isMatches: false})
       }
     })
-
   },
-  getArticleCreate: (req, res) => {
-    let step = req.params.step
-    //check if editing
+  getArticle: (req, res) => {
     let id = req.params.id
-    if (id) {
-      //Edit Article
-      Article.findById(id).populate('location').then(article => {
-        req.user.isAuthorized(req, article).then(isAuthorized => {
-          if (!isAuthorized) {
-            console.log('UNAUTHORIZED ACCESS ATTEMPT!')
-            res.redirect('/')
-            return
-          } else {
-            let articleArgs = {
-              id: article.id,
-              inputTitle: article.title,
-              inputPrice: article.price,
-              inputLocation: article.location.name,
-              inputDescription: article.description,
-              inputImages: article.images,
-              inputExtras: article.extras,
-              inputContactEmail: article.contactEmail,
-              inputContactPhone: article.contactPhone,
-              inputContactWebSite: article.contactURL
-            }
-            res.render('editor/article/create-step1', {articleArgs: articleArgs})
-          }
-        })
-      })
-    } else {
-      //Create Article
-      res.render('editor/article/create-step1')
-    }
-
-  },
-  postArticleCreate: (req, res) => {
-    let step = req.params.step
-    let errorMsg = ''
-
-    let articleArgs = req.body
-    articleArgs = createArrayForSingleString(articleArgs, 'inputImages')
-    articleArgs = createArrayForSingleString(articleArgs, 'inputExtras')
-
-    if (step === '1') {
-
-      //TODO check if errors
-      if(!articleArgs.inputTitle) {
-        errorMsg = 'Please enter valid Title!'
-      } else if (!Article.validatePrice(articleArgs.inputPrice)) {
-        errorMsg = 'Please enter valid Price!'
-      } else if (!articleArgs.inputLocation) {
-        errorMsg = 'Please enter valid Location!'
-      } else if (!articleArgs.inputDescription) {
-        errorMsg = 'Please enter valid Description'
-      }
-
-      if (errorMsg) {
-        res.render('editor/article/create-step1', {error: errorMsg, articleArgs: articleArgs})
-        return
+    Article.findById(id).populate('author location').then(article => {
+      if (article) {
+        res.render('article/single', {article : article})
       } else {
-        res.render('editor/article/create-step2', {articleArgs: articleArgs})
-        return
+        //TODO 404 page
+        console.log('Article with id: ' + id + ' Not Found')
+        res.redirect('/')
       }
-
-    } else if (step === '2') {
-
-      //check if back button is pressed
-      if (articleArgs.back) {
-        res.render('editor/article/create-step1', {articleArgs: articleArgs})
-        return
-      } else {
-        if (errorMsg) {
-          res.render('editor/article/create-step2', {error: errorMsg, articleArgs: articleArgs})
-          return
-        } else {
-          Extra.find({}).then(extras => {
-            let populatedIsChecked = Extra.populateChecked(extras, articleArgs.inputExtras)
-            res.render('editor/article/create-step3', {articleArgs: articleArgs, extras: populatedIsChecked})
-            return
-          })
-        }
-      }
-
-    } else if (step === '3') {
-
-      //check if back button is pressed
-      if (articleArgs.back) {
-        //Display images?
-
-        res.render('editor/article/create-step2', {articleArgs: articleArgs})
-        return
-      } else {
-        res.render('editor/article/create-step4', {articleArgs: articleArgs})
-        return
-      }
-
-    } else if (step === '4') {
-
-      //check if back button is pressed
-      if (articleArgs.back) {
-        Extra.find({}).then(extras => {
-          let populatedIsChecked = Extra.populateChecked(extras, articleArgs.inputExtras)
-          res.render('editor/article/create-step3', {articleArgs: articleArgs, extras: populatedIsChecked})
-          return
-        })
-      } else {
-        //TODO check for errors
-        if (!Article.validateEmail(articleArgs.inputContactEmail)) {
-          errorMsg = 'Please enter valid Email Address!'
-        } else if (!Article.validatePhone(articleArgs.inputContactPhone)) {
-          errorMsg = 'Please enter valid Phone Number!'
-        } else if (!Article.validateURL(articleArgs.inputContactWebSite)) {
-          errorMsg = 'Please enter valid Web Site Address!'
-        } else if(!articleArgs.inputTitle) {
-          errorMsg = 'Please enter valid Title! (STEP 1)'
-        } else if (!Article.validatePrice(articleArgs.inputPrice)) {
-          errorMsg = 'Please enter valid Price! (STEP 1)'
-        } else if (!articleArgs.inputLocation) {
-          errorMsg = 'Please enter valid Location! (STEP 1)'
-        } else if (!articleArgs.inputDescription) {
-          errorMsg = 'Please enter valid Description (STEP 1)'
-        }
-
-        if (errorMsg) {
-          res.render('editor/article/create-step4', {error: errorMsg, articleArgs: articleArgs})
-        } else {
-          //TODO VALIDATE ALL FIELDS AND CREATE ARTICLE
-          let articleObj = {
-            title: articleArgs.inputTitle,
-            price: articleArgs.inputPrice,
-            description: articleArgs.inputDescription,
-            contactEmail: articleArgs.inputContactEmail,
-            contactPhone: articleArgs.inputContactPhone,
-            contactURL: articleArgs.inputContactWebSite,
-            author: req.user.id
-          }
-          let images = []
-          for (let image of articleArgs.inputImages) {
-            images.push(image)
-          }
-          articleObj.images = images
-          let extras = []
-          for (let extra of articleArgs.inputExtras) {
-            extras.push(extra)
-          }
-          articleObj.extras = extras
-
-          //Check if in create or edit mode
-          if (!articleArgs.id) {
-            //create
-            Article.create(articleObj).then(article => {
-              article.prepareInsert(articleArgs.inputLocation)
-              res.redirect('/editor/article/all')
-            }).catch(error => {
-              //TODO display error message (404 - template)
-              console.log(error)
-            })
-          } else {
-            //edit
-
-            //check if user is AUTHORIZED
-            Article.findById(articleArgs.id).then(article => {
-              req.user.isAuthorized(req, article).then(isAuthorized => {
-                if (!isAuthorized) {
-                  console.log('UNAUTHORIZED ACCESS ATTEMPT!')
-                  res.redirect('/')
-                  return
-                } else {
-                  //user is AUTHORIZED
-                  Article.findOneAndUpdate({_id: articleArgs.id}, articleObj, {new: true}, (error, article) => {
-                    if (error) {
-                      //TODO display error message (404 - template)
-                      console.log(error)
-                    } else {
-                      article.prepareInsert(articleArgs.inputLocation)
-                      res.redirect('/editor/article/all')
-                    }
-                  })
-                }
-              })
-            })
-          }
-        }
-      }
-    }
-  },
-  getArticleDelete: (req, res) => {
-    let id = req.params.id
-    Article.findById(id).then(article => {
-      req.user.isAuthorized(req, article).then(isAuthorized => {
-        if (!isAuthorized) {
-          console.log('UNAUTHORIZED ACCESS ATTEMPT!')
-          res.redirect('/')
-          return
-        } else {
-          Article.findOneAndRemove({_id: id}).then((article, error) => {
-            if (error) {
-              //TODO display error
-              console.log(error)
-            } else {
-              res.redirect('/editor/article/all')
-            }
-          })
-        }
-      })
     })
   }
 }

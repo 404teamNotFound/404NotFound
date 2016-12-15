@@ -1,11 +1,34 @@
 <div class="container body-content">
-    <div class="container body-content span=8 offset=2">
-        <div class="well">
-            {{ searched.location }}
-            <br >
-            {{ searched.fromDate }}
-            <br >
-            {{ searched.toDate }}
+    <div class="well">
+        <h2>
+            {{#if isMatches }}
+                {{ searched.location }}:
+            {{else}}
+                No matches have been found for destination  {{ searched.location }}
+            {{/if}}
+        </h2>
+        <div class="row">
+            <table class="table table-striped table-hover ">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Location</th>
+                    <th>Author</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each articles}}
+                    <tr>
+                        <td>{{ this.title }}</td>
+                        <td>{{ this.location.name }}</td>
+                        <td>{{ this.author.email }}</td>
+                        <td><a href="/article/view/{{this.id}}">View more</a>
+                        </td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

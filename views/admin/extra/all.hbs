@@ -1,7 +1,7 @@
 <div class="container body-content">
     <div class="well">
         <h2>All Extras -
-            <a href="/editor/extra/create" class="btn btn-warning">Create New</a>
+            <a href="/admin/extra/create" class="btn btn-warning">Create New</a>
         </h2>
         <div class="row">
             <table class="table table-striped table-hover ">
@@ -18,8 +18,8 @@
                         <td>{{ this.id }}</td>
                         <td>{{ this.name }}</td>
                         <td>
-                            <a href="#{{this.id}}">Edit</a>
-                            <a  href="#{{this.id}}">Delete</a>
+                            <a href="/admin/extra/edit/{{this.id}}">Edit</a>
+                            <a  href="/admin/extra/delete/{{this.id}}">Delete</a>
                         </td>
                     </tr>
                 {{/each}}

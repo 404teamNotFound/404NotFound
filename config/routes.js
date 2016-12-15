@@ -1,13 +1,14 @@
-const homeController = require('./../controllers/home')
 const userController = require('./../controllers/user')
 const articleController = require('./../controllers/article')
-const extraController = require('./../controllers/editor/extra')
 const photoController = require('./../controllers/photo')
+const editorController = require('./../controllers/editor/editor')
 const adminController = require('./../controllers/admin/admin')
 
 module.exports = (app) => {
-  app.get('/', homeController.index)
-  app.post('/', homeController.indexPost)
+  app.get('/', articleController.getIndex)
+  app.post('/', articleController.postArticlesByLocation)
+
+  app.get('/article/view/:id', articleController.getArticle)
 
   app.get('/user/register', userController.registerGet)
   app.post('/user/register', userController.registerPost)
@@ -37,19 +38,14 @@ module.exports = (app) => {
     }
   })
   //EDITOR AUTHENTICATED
-  app.get('/editor/article/all', articleController.getArticlesAll)
+  app.get('/editor/article/all', editorController.article.getArticlesAll)
 
-  app.get('/editor/article/create/step/:step', articleController.getArticleCreate)
-  app.post('/editor/article/create/step/:step', articleController.postArticleCreate)
-  app.get('/editor/article/edit/:id/step/:step', articleController.getArticleCreate)
-  app.post('/editor/article/edit/:id/step/:step', articleController.postArticleCreate)
-  app.get('/editor/article/delete/:id', articleController.getArticleDelete)
+  app.get('/editor/article/create/step/:step', editorController.article.getArticleCreate)
+  app.post('/editor/article/create/step/:step', editorController.article.postArticleCreate)
+  app.get('/editor/article/edit/:id/step/:step', editorController.article.getArticleCreate)
+  app.post('/editor/article/edit/:id/step/:step', editorController.article.postArticleCreate)
+  app.get('/editor/article/delete/:id', editorController.article.getArticleDelete)
 
-
-  app.get('/editor/extra/all', extraController.getExtrasAll)
-
-  app.get('/editor/extra/create', extraController.getExtraCreate)
-  app.post('/editor/extra/create', extraController.postExtraCreate)
 
   app.use((req, res, next) => {
     if (req.isAuthenticated()) {
@@ -71,5 +67,14 @@ module.exports = (app) => {
   app.post('/admin/user/edit/:id', adminController.user.postEdit)
   app.get('/admin/user/delete/:id', adminController.user.getDelete)
   app.post('/admin/user/delete/:id', adminController.user.postDelete)
+
+  app.get('/admin/extra/all', adminController.extra.getExtrasAll)
+
+  app.get('/admin/extra/create', adminController.extra.getExtraCreate)
+  app.post('/admin/extra/create', adminController.extra.postExtraCreate)
+  app.get('/admin/extra/edit/:id', adminController.extra.getExtraEdit)
+  app.post('/admin/extra/edit/:id', adminController.extra.postExtraEdit)
+  app.get('/admin/extra/delete/:id', adminController.extra.getExtraDelete)
+  app.post('/admin/extra/delete/:id', adminController.extra.postExtraDelete)
 }
 
