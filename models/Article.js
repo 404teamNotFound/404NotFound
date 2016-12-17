@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const Comment = require('mongoose').model('Comment')
 
 let articleSchema = mongoose.Schema(
   {
@@ -12,12 +13,13 @@ let articleSchema = mongoose.Schema(
     contactPhone: {type: String, required: true},
     contactURL: {type: String},
     author: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User'},
-    date: {type: Date, default: Date.now()}
+    date: {type: Date, default: Date.now()},
+    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
   }
 )
 
 articleSchema.method({
-  prepareInsert: function(locationName) {
+  prepareInsert: function (locationName) {
     let Location = mongoose.model('Location')
     Location.findOne({name: locationName}).then(location => {
       if (location) {
@@ -28,6 +30,22 @@ articleSchema.method({
           this.location = location._id
           this.save()
         })
+      }
+    })
+  },
+  insertComment: function (comment) {
+    if (!this.comments) {
+      this.comments = []
+    }
+    this.comments.push(comment._id)
+    this.save()
+  },
+  prepareDelete: function () {
+    Comment.remove({articleId: this.id}, (err, removed) => {
+      //removed - count of the deleted Comments
+      if (err) {
+        //TODO error handle
+        console.log(err)
       }
     })
   }

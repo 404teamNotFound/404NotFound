@@ -2,7 +2,8 @@ const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 const Role = require('mongoose').model('Role')
 const Article = require('mongoose').model('Article')
-const encryption = require('./../utilities/encryption');
+const Comment = require('mongoose').model('Comment')
+const encryption = require('./../utilities/encryption')
 
 let userSchema = mongoose.Schema(
   {
@@ -16,10 +17,10 @@ let userSchema = mongoose.Schema(
 
 userSchema.method ({
   authenticate: function (password) {
-    let inputPasswordHash = encryption.hashPassword(password, this.salt);
-    let isSamePasswordHash = inputPasswordHash === this.passwordHash;
+    let inputPasswordHash = encryption.hashPassword(password, this.salt)
+    let isSamePasswordHash = inputPasswordHash === this.passwordHash
 
-    return isSamePasswordHash;
+    return isSamePasswordHash
   },
   isAuthor: function (article) {
     if(!article) {
@@ -60,9 +61,41 @@ userSchema.method ({
         console.log(error)
       }
     })
+    Comment.remove({authorId: this.id}, (err, removed) => {
+      //removed - count of the deleted Comments
+      if (err) {
+        //TODO error handle
+        console.log(err)
+      }
+    })
   }
-});
+})
 
+userSchema.statics.validateEmail = (email) => {
+  if (email) {
+    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    return re.test(email)
+  } else  {
+    return false
+  }
+}
+
+userSchema.statics.validateFullName = (fullName) => {
+  if (fullName) {
+    let re = /^[A-Z][a-zA-z]+(\s[A-Z][a-zA-z]{1,})+$/
+    return re.test(fullName)
+  } else  {
+    return false
+  }
+}
+
+userSchema.statics.validatePassword = (password) => {
+  if (!password) {
+    return false
+  } else {
+    return password.length >= 4;
+  }
+}
 
 const User = mongoose.model('User', userSchema)
 module.exports = User

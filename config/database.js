@@ -14,6 +14,7 @@ module.exports = (config) => {
 })
 
   //REQUIRE MODULES HERE!
+  require('./../models/Comment')
   require('./../models/Role').initialize()
   require('./../models/Article')
   require('./../models/User').seedAdmin()

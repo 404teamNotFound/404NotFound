@@ -220,6 +220,14 @@ module.exports = {
   getArticleDelete: (req, res) => {
     let id = req.params.id
     Article.findById(id).then(article => {
+      if (article) {
+        res.render('editor/article/delete', {article: article})
+      }
+    })
+  },
+  postArticleDelete: (req, res) => {
+    let id = req.params.id
+    Article.findById(id).then(article => {
       req.user.isAuthorized(req, article).then(isAuthorized => {
         if (!isAuthorized) {
           console.log('UNAUTHORIZED ACCESS ATTEMPT!')
@@ -231,6 +239,7 @@ module.exports = {
               //TODO display error
               console.log(error)
             } else {
+              article.prepareDelete()
               res.redirect('/editor/article/all')
             }
           })

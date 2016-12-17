@@ -10,6 +10,9 @@ module.exports = (app) => {
 
   app.get('/article/view/:id', articleController.getArticle)
 
+  //TODO Security check for authenticated user
+  app.post('/upload_comment', articleController.postUploadComment)
+
   app.get('/user/register', userController.registerGet)
   app.post('/user/register', userController.registerPost)
   //
@@ -45,6 +48,7 @@ module.exports = (app) => {
   app.get('/editor/article/edit/:id/step/:step', editorController.article.getArticleCreate)
   app.post('/editor/article/edit/:id/step/:step', editorController.article.postArticleCreate)
   app.get('/editor/article/delete/:id', editorController.article.getArticleDelete)
+  app.post('/editor/article/delete/:id', editorController.article.postArticleDelete)
 
 
   app.use((req, res, next) => {

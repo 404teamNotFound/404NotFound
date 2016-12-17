@@ -13,9 +13,15 @@ module.exports = {
     User.findOne({email: registerArgs.email}).then(user => {
       let errorMsg = ''
       if (user) {
-        errorMsg = 'User with the same email exists!'
+        errorMsg = 'User with the same Email exists!'
+      } else if (!User.validateEmail(registerArgs.email)) {
+        errorMsg = 'Please enter valid Email address!'
+      } else if(!User.validateFullName(registerArgs.fullName)) {
+        errorMsg = 'Please enter valid Full Name'
       } else if (registerArgs.password !== registerArgs.repeatedPassword) {
         errorMsg = 'Passwords do not match!'
+      } else if (!User.validatePassword(registerArgs.password)) {
+        errorMsg = 'Please enter valid password - (at least 4 chars)!'
       }
 
       if (errorMsg) {
