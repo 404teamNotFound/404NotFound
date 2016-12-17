@@ -5848,6 +5848,7 @@ button.list-group-item-danger.active:focus {
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
+  margin-top: 105px;
   background-color: #ecf0f1;
   border: 1px solid transparent;
   border-radius: 4px;
