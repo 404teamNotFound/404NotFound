@@ -11,7 +11,7 @@ module.exports = (config) => {
       return
     }
     console.log('DB Opened on address: ' + config.connectionString)
-})
+  })
 
   //REQUIRE MODULES HERE!
   require('./../models/Comment')
