@@ -10,6 +10,9 @@ module.exports = (app) => {
 
   app.get('/article/view/:id', articleController.getArticle)
 
+  //TODO Security check for authenticated user
+  app.post('/upload_comment', articleController.postUploadComment)
+
   app.get('/user/register', userController.registerGet)
   app.post('/user/register', userController.registerPost)
   //

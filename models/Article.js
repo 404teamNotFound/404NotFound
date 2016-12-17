@@ -12,7 +12,8 @@ let articleSchema = mongoose.Schema(
     contactPhone: {type: String, required: true},
     contactURL: {type: String},
     author: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User'},
-    date: {type: Date, default: Date.now()}
+    date: {type: Date, default: Date.now()},
+    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
   }
 )
 

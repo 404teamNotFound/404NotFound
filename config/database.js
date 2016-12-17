@@ -19,4 +19,5 @@ module.exports = (config) => {
   require('./../models/User').seedAdmin()
   require('./../models/Extra')
   require('./../models/Location')
+  require('./../models/Comment')
 }

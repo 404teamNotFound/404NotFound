@@ -1,5 +1,6 @@
 const Location = require('mongoose').model('Location')
 const Article = require('mongoose').model('Article')
+const Comment = require('mongoose').model('Comment')
 
 module.exports = {
   getIndex: (req, res) => {
@@ -33,5 +34,33 @@ module.exports = {
         res.redirect('/')
       }
     })
+  },
+  postUploadComment: (req, res) => {
+    let commentArgs = req.body
+    console.log(req.user.id)
+    console.log(commentArgs.authorId)
+    if (req.user.id === commentArgs.authorId)
+    {
+      let commentObj = {
+        articleId: commentArgs.articleId,
+        authorId: commentArgs.authorId,
+        content: commentArgs.content
+      }
+      Comment.create(commentObj).then(comment => {
+        if (comment) {
+          Comment.populate(comment, 'authorId', (err, comment) => {
+            if (err) {
+              //TODO send result with error code to AJAX function
+            } else {
+              res.type('json')
+              res.status(200)
+              res.send(comment)
+            }
+          })
+        } else {
+          //TODO send result with error code to AJAX function
+        }
+      })
+    }
   }
 }
