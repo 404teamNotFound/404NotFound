@@ -38,14 +38,14 @@ module.exports = {
         filename = Date.now() + '-' + file.name;
 
         // Move the file with the new file name
-        fs.rename(file.path, path.join(config.development.rootFolder, 'public/images/' + filename));
+        fs.rename(file.path, path.join(config.development.rootFolder, 'public/uploaded_images/' + filename));
 
         // Add to the list of photos
         photos.push({
           status: true,
           filename: filename,
           type: type.ext,
-          publicPath: 'images/' + filename
+          publicPath: 'uploaded_images/' + filename
         });
       } else {
         photos.push({

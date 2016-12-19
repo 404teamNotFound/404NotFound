@@ -40,5 +40,5 @@ jspm_packages
 .idea
 
 # Remove uploaded images
-public/images/
+public/uploaded_images/
 public/tmp_uploads/

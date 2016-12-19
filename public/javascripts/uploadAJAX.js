@@ -65,6 +65,7 @@ function handleSuccess(data) {
 
 // Set the progress bar to 0 when a file(s) is selected.
 $('#photos-input').on('change', function () {
+  alert("asdasdasd");
   $('.progress-bar').width('0%');
 
   // Get the files from input, create new FormData.
