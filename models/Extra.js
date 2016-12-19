@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const mongoosePaginate = require('mongoose-paginate')
 const Article = require('mongoose').model('Article')
 
 let extraSchema = mongoose.Schema(
@@ -39,6 +40,7 @@ extraSchema.method ({
   }
 })
 
+extraSchema.plugin(mongoosePaginate)
 const Extra = mongoose.model('Extra', extraSchema)
 
 module.exports = Extra

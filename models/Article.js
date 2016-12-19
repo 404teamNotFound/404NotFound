@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const mongoosePaginate = require('mongoose-paginate');
+const mongoosePaginate = require('mongoose-paginate')
 const Comment = require('mongoose').model('Comment')
 
 let articleSchema = mongoose.Schema(
@@ -97,7 +97,7 @@ articleSchema.statics.validateURL = (url) => {
   return true
 }
 
-articleSchema.plugin(mongoosePaginate);
+articleSchema.plugin(mongoosePaginate)
 const Article = mongoose.model('Article', articleSchema)
 
 module.exports = Article
