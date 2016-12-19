@@ -1,15 +1,14 @@
-<div class="container body-content">
-    <div class="well">
+<main>
+    <div id="well">
         <h2>All Extras -
-            <a href="/admin/extra/create" class="btn btn-warning">Create New</a>
+            <a href="/admin/extra/create" class="btnCreateNew">Create New</a>
         </h2>
         <div class="row">
             <table class="table table-striped table-hover ">
                 <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Actions</th>
+                    <th id="thId">#</th>
+                    <th id="thId2">Name</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -17,14 +16,24 @@
                     <tr>
                         <td>{{ this.id }}</td>
                         <td>{{ this.name }}</td>
-                        <td>
-                            <a href="/admin/extra/edit/{{this.id}}">Edit</a>
-                            <a  href="/admin/extra/delete/{{this.id}}">Delete</a>
+                        <td id="tdNoBgColor">
+                            <a id="extrasEditBt" href="/admin/extra/edit/{{this.id}}">Edit</a>
+                            <a id="extrasDeleteBt" href="/admin/extra/delete/{{this.id}}">Delete</a>
                         </td>
                     </tr>
+                    <tr>
                 {{/each}}
                 </tbody>
             </table>
+            <div class="centerPagin">
+                <ul class="pagination">
+                    <li><a href="/editor/article/all/page/1">«</a></li>
+                    {{#each pages}}
+                        <li><a href="/editor/article/all/page/{{this}}">{{this}}</a></li>
+                    {{/each}}
+                    <li><a href="/editor/article/all/page/{{lastPage}}">»</a></li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
+</main>
