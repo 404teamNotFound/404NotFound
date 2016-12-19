@@ -1,29 +1,49 @@
-<!DOCTYPE html>
-<html>
+<!Doctype html>
+<html lang="en-US">
 <head>
-    <title>404 Not Found</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/stylesheets/custom.css' />
-    <script src="/javascripts/jquery-1.10.2.js"></script>
-    <script src="/javascripts/bootstrap.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Free Guide for adventurers" />
+    <meta name="keywords" content="place, fun, travel, Bulgaria, guide, found" />
+    <!-- <meta http-equiv="refresh" content="60" /> -->
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <base href="index.html" target="_self" />
+
+    <title>404PlaceNotFound</title>
+
+    <script type="text/javascript" src="/javascripts/map.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery.js"></script>
+    <script type="text/javascript" src="/javascripts/datepicker.js"></script>
+    <script type="text/javascript" src="/javascripts/eye.js"></script>
+    <script type="text/javascript" src="/javascripts/layout.js?ver=1.0.2"></script>
+    <script type="text/javascript" src="/javascripts/snow.js"></script>
+    <script type="text/javascript">
+        //<![CDATA[
+        window.onload = function() {
+            try {
+                snow.count = 76;   // number of flakes
+                snow.delay = 20;   // timer interval
+                snow.minSpeed = 2; // minimum movement/time slice
+                snow.maxSpeed = 2; // maximum movement/time slice
+                snow.start();
+            } catch(e) {
+                // no snow :(
+            }
+        };
+        //]]>
+    </script>
+
+    <link rel="stylesheet" href="/stylesheets/layout.css" />
+    <link rel="stylesheet" href="/stylesheets/datepicker.css" />
+
 </head>
 <body>
-<header>
-    <div class="navbar navbar-default navbar-fixed-top text-uppercase">
-        <div class="container">
-            <div class="navbar-header">
-                <a href="/" class="navbar-brand">404 Not Found</a>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
+<div id="headerNav">
+    <nav>
+        <ul>
             {{#if user}}
-                <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        {{#if isAdmin}}
-                            <li class="dropdown">
+                        {{#if isEditor}}
+                            <li class="dropdown" id="onlyThisLi">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                                    role="button" aria-expanded="false">Editor<span
                                         class="caret"></span></a>
@@ -31,7 +51,9 @@
                                     <li><a href="/editor/article/all">Articles</a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
+                        {{/if}}
+                        {{#if isAdmin}}
+                            <li class="dropdown" id="onlyThisLi">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                                    role="button" aria-expanded="false">Admin<span
                                         class="caret"></span></a>
@@ -41,30 +63,31 @@
                                 </ul>
                             </li>
                         {{/if}}
-                        <li><a href="#">Welcome({{user.email}})</a></li>
-                        <li><a href="/user/logout">Logout</a></li>
+                        <li id="onlyThisLi"><a href="#">Welcome({{user.email}})</a></li>
+                        <li id="onlyThisLi"><a href="/user/logout">Logout</a></li>
                     </ul>
-                </div>
             {{/if}}
             {{#unless user}}
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/user/register">Register</a></li>
-                        <li><a href="/user/login">Login</a></li>
-                    </ul>
-                </div>
+                <li id="onlyThisLi"><a href="/user/register">Register</a></li>
+                <li id="onlyThisLi"><a href="/user/login">Login</a></li>
             {{/unless}}
-        </div>
-    </div>
-</header>
+
+            <a id="title1" href="/" class="navbar-brand">404 <sup>Place</sup><sub>Not</sub> Found ?</a>
+        </ul>
+    </nav>
+</div>
 {{#if error }}
     <h2>{{error}}</h2>
 {{/if}}
 {{{body}}}
 </body>
 <footer>
-    <div class="container modal-footer">
-        <p>&copy; 2016 - Software University Foundation</p>
+    <div id="footer">
+        <p>
+            One project of :<br /><br /><span id="footerSpan">Tsvetan<br />Yavor<br />Anton<br />Viktor</span>
+        </p>
+
+        <img id="logo" src="images/404logo.png" alt="logo">
     </div>
 </footer>
 </html>

@@ -1,19 +1,32 @@
-<div class="container body-content">
-    <div class="container body-content span=8 offset=2">
-        <div class="well">
-            <form action="" class="form-horizontal" method="post">
-                <fieldset>
-                    <div class="form-group">
-                        <input type="text" name="location">
-                        <input type="submit" value="search" >
-                        <br >
-                        From:
-                        <input type="date" name="fromDate"  >
-                        To:
-                        <input type="date" name="toDate">
-                    </div>
-                </fieldset>
+
+<main>
+    <section>
+        <h1 id="headlineH1">Travel Guide - stay and have fun in Bulgaria!</h1>
+
+        <div id="form1fieldset">
+            <form action="" method="post" autocomplete="on"> <!--class="form-horizontal" -->
+
+                <input type="text" name="location" id="search" placeholder="enter Location ..." autofocus required>  <!-- pattern="[A-Za-z]{20}" ????-->
+
+                <input type="image" value="search" id="searchButton" src="images/magnifying_glass.png" alt="Submit">
+                <button class="button button5">Search</button>
             </form>
+
+            <br />
+
+            <center>
+                <div id="calendar">
+                    <p>Set your stay from date to date !</p>
+                    <div id="date3"></div>
+                </div>
+            </center>
         </div>
-    </div>
-</div>
+
+    </section>
+
+    <section>
+        <div id="map" >
+            <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+        </div>
+    </section>
+</main>

@@ -1,43 +1,24 @@
-<div class="container body-content span=8 offset=2">
-    <div class="well">
-        <form class="form-horizontal" method="post" action="/user/register">
-            <fieldset>
-                <legend>Register</legend>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="inputEmail">Email</label>
-                    <div class="col-sm-4 ">
-                        <input type="text" class="form-control" id="inputEmail" placeholder="Email" name="email"
-                               required value="{{email}}" >
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="inputFullName">Full Name</label>
-                    <div class="col-sm-4 ">
-                        <input type="text" class="form-control" id="inputFullName" placeholder="Full Name"
-                               required name="fullName" value="{{fullName}}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="inputPassword">Password</label>
-                    <div class="col-sm-4">
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Password"
-                               required name="password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">Confirm Password</label>
-                    <div class="col-sm-4">
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Confirm Password"
-                               required name="repeatedPassword">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-4 col-sm-offset-4">
-                        <a href="/" class="btn btn-default">Cancel</a>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>
-            </fieldset>
-        </form>
-    </div>
-</div>
+<main>
+    <form class="form-horizontal" id="form-horizontal" method="post" action="/user/register" autocomplete="on">
+        <fieldset id="loginFieldset1">
+            <legend id="registerLegend">Register</legend>
+
+            <label for="inputEmail">Email</label>
+            <input type="text" class="form-control" id="inputEmail" placeholder="Email" name="email" autofocus required value="{{email}}">
+
+            <label for="inputFullName">Full Name</label>
+            <input type="text" class="form-control" id="inputFullName" placeholder="Full Name" required name="fullName" value="{{fullName}}">
+
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="Password" required name="password">
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="Confirm Password" required name="repeatedPassword">
+
+            <div class="form-group">
+                <a class="btn btn-default" id="btn-default-register" href="/">Cancel</a>
+                <button type="submit" class="btn btn-primary" id="btn-primary-register">Register</button>
+            </div>
+        </fieldset>
+    </form>
+</main>
