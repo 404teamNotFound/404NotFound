@@ -38,9 +38,8 @@
 <body>
 <div id="headerNav">
     <nav>
-        <ul>
+        <ul class="nav navbar-nav navbar-right">
             {{#if user}}
-                    <ul class="nav navbar-nav navbar-right">
                         {{#if isEditor}}
                             <li class="dropdown" id="onlyThisLi">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"
@@ -64,13 +63,11 @@
                         {{/if}}
                         <li id="onlyThisLi"><a href="#">Welcome({{user.email}})</a></li>
                         <li id="onlyThisLi"><a href="/user/logout">Logout</a></li>
-                    </ul>
             {{/if}}
             {{#unless user}}
                 <li id="onlyThisLi"><a href="/user/register">Register</a></li>
                 <li id="onlyThisLi"><a href="/user/login">Login</a></li>
             {{/unless}}
-
             <a id="title1" href="/" class="navbar-brand">404 <sup>Place</sup><sub>Not</sub> Found ?</a>
         </ul>
     </nav>
@@ -86,7 +83,7 @@
             One project of :<br /><br /><span id="footerSpan">Tsvetan<br />Yavor<br />Anton<br />Viktor</span>
         </p>
 
-        <img id="logo" src="images/404logo.png" alt="logo">
+        <img id="logo" src="/images/404logo.png" alt="logo">
     </div>
 </footer>
 </html>
