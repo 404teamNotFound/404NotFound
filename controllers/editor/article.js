@@ -13,11 +13,20 @@ function createArrayForSingleString(articleArgs, inputType) {
 
 module.exports = {
   getArticlesAll: (req, res) => {
+    let currPage = req.params.page || 1
     req.user.isInRole('Admin').then(isAdmin => {
       if (isAdmin) {
-        Article.find().populate('author location').then(articles => {
-          res.render('editor/article/all', {articles: articles})
+        Article.paginate({}, {populate: 'author location', page: currPage, limit: 2}).then(result => {
+          //TODO create a function for this array creation
+          let pages = []
+          for (let i = 1; i <= result.pages; i++) {
+            pages.push(i)
+          }
+          res.render('editor/article/all', {articles: result.docs, pages: pages, lastPage: result.pages})
         })
+        // Article.find().populate('author location').then(articles => {
+        //   res.render('editor/article/all', {articles: articles})
+        // })
       } else {
         Article.find({author: req.user.id}).populate('author location').then(articles => {
           res.render('editor/article/all', {articles: articles})

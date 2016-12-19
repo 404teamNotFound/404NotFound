@@ -42,6 +42,7 @@ module.exports = (app) => {
   })
   //EDITOR AUTHENTICATED
   app.get('/editor/article/all', editorController.article.getArticlesAll)
+  app.get('/editor/article/all/page/:page', editorController.article.getArticlesAll)
 
   app.get('/editor/article/create/step/:step', editorController.article.getArticleCreate)
   app.post('/editor/article/create/step/:step', editorController.article.postArticleCreate)
