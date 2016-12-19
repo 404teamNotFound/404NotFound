@@ -74,6 +74,7 @@ module.exports = (app) => {
   app.post('/admin/user/delete/:id', adminController.user.postDelete)
 
   app.get('/admin/extra/all', adminController.extra.getExtrasAll)
+  app.get('/admin/extra/all/page/:page', adminController.extra.getExtrasAll)
 
   app.get('/admin/extra/create', adminController.extra.getExtraCreate)
   app.post('/admin/extra/create', adminController.extra.postExtraCreate)
