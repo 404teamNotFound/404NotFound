@@ -13,6 +13,7 @@ module.exports = {
       if (location) {
         Article.find({location: location._id}).populate('author location').then(articles => {
           if (articles) {
+            Article.populateFirstImage(articles)
             res.render('article/all', {articles: articles, searched: searchArgs, isMatches: true})
           } else {
             res.render('article/all', {searched: searchArgs, isMatches: false})

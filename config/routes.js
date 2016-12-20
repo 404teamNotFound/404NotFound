@@ -68,6 +68,7 @@ module.exports = (app) => {
 
   //Admin Modules Here
   app.get('/admin/user/all', adminController.user.all)
+  app.get('/admin/user/all/page/:page', adminController.user.all)
   app.get('/admin/user/edit/:id', adminController.user.getEdit)
   app.post('/admin/user/edit/:id', adminController.user.postEdit)
   app.get('/admin/user/delete/:id', adminController.user.getDelete)

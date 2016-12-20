@@ -48,10 +48,9 @@ function handleSuccess(data) {
       if (img.status) {
         $('<input>').attr({type: 'hidden', name: 'inputImages', value: img.publicPath}).appendTo('fieldset');
         html += '<div class="col-xs-6 col-md-4" id="'+ img.publicPath +'">' +
-          '<a href="#" class="thumbnail">' +
             '<img src="/' + img.publicPath + '" alt="' + img.filename  + '">' +
             '<span class="close" id="' + img.publicPath + '"></span>' +
-          '</a></div>';
+          '</div>';
       } else {
         html += '<div class="col-xs-6 col-md-4"><a href="#" class="thumbnail">Invalid file type - ' + img.filename  + '</a></div>';
       }
@@ -65,7 +64,6 @@ function handleSuccess(data) {
 
 // Set the progress bar to 0 when a file(s) is selected.
 $('#photos-input').on('change', function () {
-  alert("asdasdasd");
   $('.progress-bar').width('0%');
 
   // Get the files from input, create new FormData.
@@ -94,14 +92,9 @@ $('#photos-input').on('change', function () {
 });
 
 $(document).on('click', 'span.close', function (event) {
-  alert(this.id);
-  $('div[id="' + this.id + '"]').remove()
-  $('input[name="inputImages"][type="hidden"][value="'+ this.id +'"]').remove()
+  let confirmed = confirm("Proceed with Image remove?")
+  if (confirmed) {
+    $('div[id="' + this.id + '"]').remove()
+    $('input[name="inputImages"][type="hidden"][value="'+ this.id +'"]').remove()
+  }
 })
-
-// On form submit, handle the file uploads.
-// $('#upload-photos').on('submit', function (event) {
-//   event.preventDefault();
-//
-//
-// });

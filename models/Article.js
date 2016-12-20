@@ -70,6 +70,12 @@ articleSchema.statics.validateImage = (image) => {
   return true
 }
 
+articleSchema.statics.populateFirstImage = (articles) => {
+  for (let article of articles) {
+    article.firstImage = article.images[0] || 'images/article/404.png'
+  }
+}
+
 articleSchema.statics.validateEmail = (email) => {
   if (email) {
     let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/

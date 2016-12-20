@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const mongoosePaginate = require('mongoose-paginate')
 mongoose.Promise = global.Promise
 const Role = require('mongoose').model('Role')
 const Article = require('mongoose').model('Article')
@@ -55,10 +56,11 @@ userSchema.method ({
     }
   },
   prepareDelete: function () {
-    Article.findOneAndRemove({author: this.id}).then((articles, error) => {
-      if (error) {
-        //TODO display error
-        console.log(error)
+    Article.remove({author: this.id}).then((err, removed) => {
+      //removed - count of the deleted Articles
+      if (err) {
+        //TODO error handle
+        console.log(err)
       }
     })
     Comment.remove({authorId: this.id}, (err, removed) => {
@@ -96,7 +98,7 @@ userSchema.statics.validatePassword = (password) => {
     return password.length >= 4;
   }
 }
-
+userSchema.plugin(mongoosePaginate)
 const User = mongoose.model('User', userSchema)
 module.exports = User
 
