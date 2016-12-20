@@ -173,8 +173,7 @@ module.exports = {
             description: articleArgs.inputDescription,
             contactEmail: articleArgs.inputContactEmail,
             contactPhone: articleArgs.inputContactPhone,
-            contactURL: articleArgs.inputContactWebSite,
-            author: req.user.id
+            contactURL: articleArgs.inputContactWebSite
           }
           let images = []
           if (articleArgs.inputImages) {
@@ -195,6 +194,7 @@ module.exports = {
           //Check if in create or edit mode
           if (!articleArgs.id) {
             //create
+            articleObj.author = req.user.id
             Article.create(articleObj).then(article => {
               article.prepareInsert(articleArgs.inputLocation)
               res.redirect('/editor/article/all')
