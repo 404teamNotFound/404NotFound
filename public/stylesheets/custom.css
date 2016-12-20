@@ -47,7 +47,7 @@ input {
     top: 0; left: 0; right: 0; bottom: 0;
     text-indent: 0;
     line-height: 1em;
-    color: #aaa;
+    color: #fa0300;
 }
 .score label:hover:before,
 .score label:hover ~ label:before,
@@ -63,3 +63,8 @@ input {
 .goog-te-banner-frame.skiptranslate {display: none !important;}
 body { top: 0px !important; }
 
+#stars {
+    float: none;
+    position: relative;
+    top: 8px;
+}

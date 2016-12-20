@@ -1,33 +1,32 @@
 <h2 id="moreInfoTitle">{{ article.title }}</h2>
-<div style="border: 4px ridge grey; margin: 15px; padding: 10px; border-radius: 15px; background: snow">
+<div id="mainDivMIPage">
     <div class="article-container" style="display: inline-block;">
-        <div style="display: inline-block; float: left; ">
-            <img src="/{{ article.firstImage }}" alt="Article pic" style="float:left;padding:2px;height:460px;width:840px;">
+        <div id="moreInfoPictures">
+            <img src="/{{ article.firstImage }}" alt="Article pic" id="moreInforMainIMG">
             {{#each article.images }}
-                <img src="/{{ this }}" alt="Article pic" style="float:left;padding:2px;height:120px;width:180px;">
+                <img src="/{{ this }}" alt="Article pic" id="moreInforIMGs">
             {{/each}}
         </div>
         <br >
-        <div style="float: left; margin: auto; padding: 10px; color:black; font-size: large">
+        <div id="moreInfoText">
             {{ article.description }}
         </div>
         <div>
-            <div style="padding-left: 10px; font-size: large">
+            <div id="moreInfoExtras">
                 <b>Extras: </b>
                 {{#each article.extras}}
-                    <b style="padding-left: 20px;color:#0e6f5c;">{{this.name}}</b>
+                    <b id="moreInfoExtrasLayout">{{this.name}}</b>
                     <!-- <img src="./pics/AirCondition.png" alt="Article pic" height="22" width="28" class="wrap align-right"> !-->
                 {{/each}}
             </div>
         </div>
-        <div style=" color: black; padding: 10px; display:inline-block; float: left; font-size: large">
-            <p><b>Price: </b><b style="color:#0e6f5c">{{article.price}} lv.</b></p>
+        <div id="moreInfoPriceContacts">
+            <p><b>Price: </b><b style="color:#6c9f43">{{article.price}} lv.</b></p>
             <!-- <p><b>Adress:</b> Sofia, Sofia center, pl. Naradono sabranie 4, 1000 </p> !-->
-            <b>Contacts:</b>
-            <b style="padding-left: 20px">Phone: </b>{{ article.contactPhone}}
-            <b style="padding-left: 20px">E-mail:</b>{{ article.contactEmail }}
+            <b>Phone: </b>{{ article.contactPhone}}
+            <b id="moreInfoContactsAdjust">E-mail: </b>{{ article.contactEmail }}
             {{#if article.contactURL }}
-                <b style="padding-left: 20px">Web site:</b>
+                <b id="moreInfoContactsAdjust">Web site:</b>
                 <a href="{{ article.contactURL }}" target="_blank">{{ article.contactURL }}</a>
             {{/if}}
 
@@ -53,13 +52,13 @@
         </div>
 
     </div>
-    <div style="padding-left: 10px">
+    <div id="commentsSection">
         <details >
-            <summary>Coments and more</summary>
+            <summary id="commentsDropDown">Coments and more</summary>
             {{#each article.comments}}
                 <div id="comments">
                     {{ this.content }}
-                    <div style="color: #ff8c17;font-size: small;">
+                    <div id="moreInfoAuthorName">
                         By: {{ this.authorId.fullName }}
                     </div>
                 </div>

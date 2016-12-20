@@ -237,7 +237,7 @@ center p {
 	#album {left: 14.5em!important; bottom: 2.5em!important;}
 	#form-horizontal1{height: 34.5em!important;}
 	#form-horizontal3{height: 37.5em!important;}
-	#form-horizontal5 {height: 18em; margin: 30px auto auto auto; width: 100%;}
+	#form-horizontal5 {height: 18em; margin: 30px auto auto auto; width: 100%; right: 3px;}
 }
 
 @media screen and (max-width: 1370px) and (min-width: 860px) {
@@ -347,7 +347,7 @@ label {
     cursor: pointer;
 	box-shadow: inset 0 1px 3px #ddd;
 }
-.btn-primary2 {padding: 14px 40.97em; text-decoration: none;}
+.btn-primary2 {padding: 14px 41.18em; text-decoration: none;}
 
 .btn-primary1 {margin-bottom:2.5em; margin-top:47px; margin-left:0; margin-right: 0;}
 
@@ -557,15 +557,87 @@ footer	{
 #moreInfoTitle {
 	color:black;
 	text-align: center;
-	font-family: Tahoma;
+	font-family: Verdana;
 }
 
+#mainDivMIPage {
+	border: 3px solid black;
+	margin: 15px;
+	padding: 10px;
+	border-radius: 15px;
+	background: #d9d9d9;
+	opacity: 0.9;
+	margin-bottom: 3em;
+}
+
+#moreInfoPictures {
+	display: inline-block;
+	float: left;
+}
+
+#moreInfoText{
+	float: left;
+	margin: auto;
+	padding: 13px 2px;
+	color: black;
+	font-size: large;
+	font-family: Verdana;
+}
+
+#moreInforMainIMG {
+	float:left;
+	padding:2px;
+	height:460px;
+	width:840px;
+}
+
+#moreInforIMGs {
+	float:left;
+	padding:2px;
+	height:120px;
+	width:180px;
+}
+
+#moreInfoExtras {
+	padding-left: 4px;
+	font-size: large;
+	font-family: Verdana;
+}
+
+#moreInfoPriceContacts {
+	color: black;
+	padding: 4px;
+	display: inline-block;
+	float: left;
+	font-size: large;
+	font-family: Verdana;
+	padding-bottom: 1em;
+}
+
+#moreInfoContactsAdjust {
+	padding-left: 20px;
+}
+
+#moreInfoExtrasLayout {padding-left: 20px;	color:#6c9f43;}
+
 /*Comments*/
+#commentsSection {padding-left: 6px;}
+
+#commentsDropDown {
+	font-family: Verdana;
+	font-size: large;
+}
+
+#moreInfoAuthorName {
+	color: #6c9f43;
+	font-size: small;
+}
 
 #comments{
 	margin-top: 20px;
 	overflow-wrap: break-word;
 	margin-right: 0.5em;
+	font-family: Verdana;
 }
 
 #commentsFieldSet {
@@ -580,3 +652,26 @@ footer	{
 }
 
 #form-group-comments {margin-bottom: 0;}
+
+
+/* Articles Window */
+
+#articleSearchRezult {
+	color:black;
+	text-align: center;
+	font-family: "Verdana";
+}
+
+#articleImage {
+	width: 250px;
+	height: 250px;
+}
+
+#articlesContentInfo {
+	padding-left: 14.5em;
+	font-size: large;
+}
+
+#articlesPrices {float: none; color:#fa0300;}
+
+#articlesInfos {float: none; margin: 20px;}

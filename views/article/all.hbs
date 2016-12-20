@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="/stylesheets/custom.css" />
-<h2 style="color:black;text-align: center; font-family: 'Tahoma';">
+<h2 id="articleSearchRezult">
     {{#if isMatches }}
         {{ searched.location }}:
     {{else}}
@@ -8,30 +8,29 @@
 </h2>
 
 {{#each articles}}
-    <h2 style="color:black;text-align: center; font-family: 'Tahoma';">{{ this.title }}</h2>
-    <div style="border: 4px ridge grey; margin: 15px; padding: 10px; border-radius: 15px; background: snow">
+    <h2 id="articleSearchRezult">{{ this.title }}</h2>
+    <div id="mainDivMIPage">
         <div class="article-container" style="display: inline-block;">
-            <div style="display: inline-block; float: left;">
+            <div id="moreInfoPictures">
                 <a href="/article/view/{{this.id}}">
-                    <img src="/{{this.firstImage}}" alt="Article pic" height="180" width="180"
-                         class="wrap align-right">
+                    <img src="/{{this.firstImage}}" alt="Article pic" id="articleImage" class="wrap align-right">
                 </a>
             </div>
 
-            <div style=" color: black; padding-left: 10px; display:inline-block; float: left; font-size: large">
-                <p><b>Price: </b><span style="color:red"><b>{{this.price}} lv.</b></span></p>
+            <div id="articlesContentInfo">
+                <p><b>Price: </b><span id="articlesPrices"><b>{{this.price}} lv.</b></span></p>
                 <p><b>Adress:</b> TODO ADDRESS !!! </p>
-                <b>Contacts:</b> phone {{this.contactPhone}}
-                <span style="margin: 20px"><b>E-mail: </b> {{this.contactEmail}} </span>
+                <b>Phone:</b> {{this.contactPhone}}
+                <span id="articlesInfos"><b>E-mail: </b> {{this.contactEmail}} </span>
                 {{#if this.contactURL}}
-                    <span style="margin: 20px"><b>Web site: </b>
+                    <span id="articlesInfos"><b>Web site: </b>
                     <a href="{{this.contactURL}}" target="_blank">{{this.contactURL}}</a>
                 </span>
                 {{/if}}
 
                 <p>
                     <b>Ratting:</b>&nbsp;
-                    <span class="score">
+                    <span class="score" id="stars">
                         <input type="radio" id="score-5" name="score" value="5"/>
                         <label title="5 stars" for="score-5">5 stars</label>
 
