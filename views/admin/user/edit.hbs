@@ -1,59 +1,34 @@
-<div class="container body-content span=8 offset=2">
-    <div class="well">
-        <form class="form-horizontal"
-              action="/admin/user/edit/{{user.id}}" method="post">
-            <fieldset>
-                <legend>Edit User - {{ user.fullName }}</legend>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label"
-                           for="email">Email</label>
-                    <div class="col-sm-4 ">
-                        <input class="form-control" id="email"
-                               value="{{ user.email }}" name="email" required type="text">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label"
-                           for="fullName">Full Name</label>
-                    <div class="col-sm-4 ">
-                        <input type="text" class="form-control"
-                               id="fullName" value="{{ user.fullName }}" name="fullName" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label"
-                           for="password">Password</label>
-                    <div class="col-sm-4">
-                        <input type="password" class="form-control"
-                               id="password" placeholder="Password" name="password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label"
-                           for="confirmedPassword">Confirm Password</label>
-                    <div class="col-sm-4">
-                        <input type="password" class="form-control"
-                               id="confirmedPassword" placeholder="Password"
-                               name="confirmedPassword">
-                    </div>
-                </div>
-                <div class="form-group">
-                   {{#each roles}}
-                        <div class="col-sm-4 col-sm-offset-4">
-                            <input type="checkbox" name="roles"
-                                   value="{{ this.name }}" {{#if this.isChecked}} checked {{/if}}/>
-                            {{this.name}}
-                        </div>
-                    {{/each}}
-                </div>
-                <div class="form-group">
+<main>
+    <form class="form-horizontal" id="form-horizontal2" method="post" action="/admin/user/edit/{{user.id}}" autocomplete="on">
+        <fieldset id="createArticleStep1">
+            <legend id="createArticleLegend">Edit User - {{ user.fullName }}</legend>
+
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="inputTitle" name="email" value="{{ user.email }}" autofocus required>
+
+            <label for="fullName">Full Name</label>
+            <input type="text" class="form-control" id="inputPrice" required name="fullName" value="{{ user.fullName }}">
+
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="inputLocation" placeholder="Password" name="password">
+
+            <label for="confirmedPassword">Confirm Password</label>
+            <input type="password" class="form-control" id="inputDescription" placeholder="Password" name="confirmedPassword">
+
+            <div class="form-group">
+                {{#each roles}}
                     <div class="col-sm-4 col-sm-offset-4">
-                        <a class="btn btn-default"
-                           href="/admin/user/all">Cancel</a>
-                        <button type="submit" class="btn btn-success">Edit</button>
+                        <input type="checkbox" name="roles"
+                               value="{{ this.name }}" {{#if this.isChecked}} checked {{/if}}/>
+                        {{this.name}}
                     </div>
-                </div>
-            </fieldset>
-        </form>
-    </div>
-</div>
+                {{/each}}
+            </div>
+
+            <div class="form-group">
+                <a class="btn-default" id="btn-default" href="/admin/user/all">Cancel</a>
+                <button type="submit" class="btn-primary" id="btn-primary">Edit</button>
+            </div>
+        </fieldset>
+    </form>
+</main>

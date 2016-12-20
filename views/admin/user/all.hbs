@@ -1,14 +1,13 @@
-<div class="container body-content">
+<main>
     <div class="well">
         <h2>All Users</h2>
         <div class="row">
             <table class="table table-striped table-hover ">
                 <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Full Name</th>
-                    <th>Email</th>
-                    <th>Actions</th>
+                    <th id="thIda">#</th>
+                    <th id="thId2a">Full Name</th>
+                    <th id="thId3">Email</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -17,14 +16,24 @@
                         <td>{{ this.id }}</td>
                         <td>{{ this.fullName }}</td>
                         <td>{{ this.email }}</td>
-                        <td>
-                            <a href="/admin/user/edit/{{this.id}}">Edit</a>
-                            <a href="/admin/user/delete/{{this.id}}">Delete</a>
+                        <td id="tdNoBgColor">
+                            <a id="extrasEditBt" href="/admin/user/edit/{{this.id}}">Edit</a>
+                            <a id="extrasDeleteBt" href="/admin/user/delete/{{this.id}}">Delete</a>
                         </td>
                     </tr>
                 {{/each}}
                 </tbody>
             </table>
+            <div class="centerPagin">
+                <ul class="pagination">
+                    <li id="paginList"><a href="/admin/user/all/page/1">«</a></li>
+                    {{#each pages}}
+                        <li id="paginList"><a href="/admin/user/all/page/{{this}}">{{this}}</a></li>
+                    {{/each}}
+                    <li id="paginList"><a href="/admin/user/all/page/{{lastPage}}">»</a></li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
+</main>
+
