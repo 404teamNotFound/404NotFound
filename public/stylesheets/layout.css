@@ -249,18 +249,17 @@ center p {
 }
 
 @media screen and (min-width: 1370px) {
-	#form-horizontal5 {height: 18em; margin: 30px auto auto auto; width: 100%; right: 3px;}
+	#form-horizontal5 {height: 19em; margin: 30px auto auto auto; width: 100%; right: 3px;}
 }
 
 @media screen and (min-width: 1370px) {
-	.centerPagin {width: 90.2em;}
-	.pagination {padding-left: 38em!important;}
+	.centerPagin {width: 72.9em;}
 }
 /* @MEDIA QUERIES - Login/Register - END */
 
 #form-horizontal{height: 48.5em;}
 #form-horizontal1{height: 40.1em;}
-#form-horizontal2{height: 55em;}
+#form-horizontal2{height: 62em;}
 #form-horizontal3{height: 40.1em;}
 #form-horizontal4{height: 54.5em;}
 
