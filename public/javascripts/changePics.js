@@ -1,4 +1,4 @@
-$('.madafaka').on('click', function (event) {
+$('.smallPics').on('click', function (event) {
   event.preventDefault()
   $('#moreInforMainIMG').attr('src', $(this).attr('src'));
 });
