@@ -16,7 +16,7 @@ function handleSuccess(result) {
   document.getElementById("form-horizontal5").reset();
 }
 
-$('#btn-primary2').on('click', function (event) {
+$('#btn-default').on('click', function (event) {
   event.preventDefault()
   let pageURL = window.location.href
   let splitURL = pageURL.split('/')
