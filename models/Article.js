@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const mongoosePaginate = require('mongoose-paginate');
+const mongoosePaginate = require('mongoose-paginate')
 const Comment = require('mongoose').model('Comment')
 
 let articleSchema = mongoose.Schema(
@@ -70,6 +70,12 @@ articleSchema.statics.validateImage = (image) => {
   return true
 }
 
+articleSchema.statics.populateFirstImage = (articles) => {
+  for (let article of articles) {
+    article.firstImage = article.images[0] || 'images/article/404.png'
+  }
+}
+
 articleSchema.statics.validateEmail = (email) => {
   if (email) {
     let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -97,7 +103,7 @@ articleSchema.statics.validateURL = (url) => {
   return true
 }
 
-articleSchema.plugin(mongoosePaginate);
+articleSchema.plugin(mongoosePaginate)
 const Article = mongoose.model('Article', articleSchema)
 
 module.exports = Article

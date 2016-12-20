@@ -223,7 +223,7 @@ center p {
 /* @MEDIA QUERIES - Login/Register */
 
 @media screen and (max-width: 1370px) and (min-width: 524px){
-	.form-horizontal{height: 42em; margin: -15px auto 0.9em auto;}
+	.form-horizontal{height: 33em; margin: -15px auto 0.9em auto;}
 	#loginFieldset{top: -1em;}
 	#form-horizontal{height: 37.7em!important;}
 	#loginFieldset1{top: -4.1em!important;}
@@ -234,6 +234,11 @@ center p {
 	#footer {left: 37%!important;}
 	#createArticleStep1, #createArticleStep2, #createArticleStep3{top:-2em!important;}
 	#createArticleStep4 {top: -1em;}
+	#album {left: 13.5em!important; bottom: 4.5em!important;}
+	#form-horizontal1{height: 34.5em!important;}
+	#form-horizontal3{height: 37.5em!important;}
+	#form-horizontal5 {height: 18em; margin: 30px auto auto auto; width: 100%; right: 3px;}
+	.btn-primary2 { padding: 14px 41.1em!important;}
 }
 
 @media screen and (max-width: 1370px) and (min-width: 860px) {
@@ -244,11 +249,23 @@ center p {
 	#createArticleExtras4 {font-size: 3em;}
 }
 
+@media screen and (min-width: 1370px) {
+	#form-horizontal5 {height: 18em; margin: 30px auto auto auto; width: 100%; right: 3px;}
+}
+
+@media screen and (min-width: 1370px) {
+	.centerPagin {width: 90.2em;}
+	.pagination {padding-left: 38em!important;}
+}
 /* @MEDIA QUERIES - Login/Register - END */
 
 #form-horizontal{height: 48.5em;}
-#form-horizontal1{height: 57.5em;}
-#form-horizontal2{height: 42em;}
+#form-horizontal1{height: 40.1em;}
+#form-horizontal2{height: 55em;}
+#form-horizontal3{height: 40.1em;}
+#form-horizontal4{height: 54.5em;}
+
+#upload-photos{height: 42em;}
 
 
 #loginFieldset1{top: -2.3em;}
@@ -270,7 +287,7 @@ legend {
 	font-variant: petite-caps;
 	position: relative;
 	top: 1em;
-	font-size: 4em;
+	font-size: 3.5em;
 	padding-bottom: 30px;
 }
 
@@ -308,7 +325,7 @@ label {
 	text-decoration: none;
 	position: relative;
 	display: inline-block;
-	width: 100%;
+	width: 99.87%;
 	text-align: center;
 	box-shadow: inset 0 1px 3px #ddd;
 	font-family: verdana;
@@ -320,11 +337,11 @@ label {
 }
 
 .btn-default {
-	top: 22px;
+	top: 15px;
 	margin-bottom: 30px;
 }
 
-.btn-primary, #btn-primary, .btn-primary1 {
+.btn-primary, #btn-primary, .btn-primary1, .btn-primary2 {
     width: 100%;
     background-color: #6c9f43;
     color: white;
@@ -339,6 +356,7 @@ label {
     cursor: pointer;
 	box-shadow: inset 0 1px 3px #ddd;
 }
+.btn-primary2 {padding: 14px 60.54em; text-decoration: none;}
 
 .btn-primary1 {margin-bottom:2.5em; margin-top:47px; margin-left:0; margin-right: 0;}
 
@@ -349,23 +367,53 @@ label {
     margin: 33px 0px 0px 0px;
 }
 
-.btn-default:hover, .btn-primary:hover, #btn-primary:hover, #btn-default:hover, .btn-primary1:hover {
+.btn-default:hover, .btn-primary:hover, #btn-primary:hover, #btn-default:hover, .btn-primary1:hover, .btn-primary2:hover {
     background-color: #111111;
 }
 
 /* Adding Photos in article create step 2-3  */
 
-
+.form-group{margin-bottom: 2em;}
 #form-group {
 	width:23%;
 }
 
 span{float:right}
 
-/* #form-group2 { */
-	/* position:relative; */
-	/* top:6em; */
-/* } */
+#album{
+	position: absolute;
+	left: 29em;
+	bottom: 5.5em;
+}
+
+.col-md-4 {
+	padding: 0 6px;
+	float: left;
+	width: 17.5%;
+	box-sizing: border-box;
+}
+
+.col-md-4 img {
+	width: 100%;
+	height: auto;
+}
+
+.close::before {
+	content: "✕";
+	font-size: 16.5px;
+}
+
+.close:hover {
+	color:red;
+}
+
+.close {
+	position: relative;
+	cursor: pointer;
+	font-weight: bold;
+	color: white;
+}
+
 
 /* Adding Photos in article create step 2-3 END */
 
@@ -481,7 +529,7 @@ footer	{
 	display: inline-block;
 	position: relative;
     bottom: 1.8em;
-	font-family:verdana;
+	font-family: verdana;
 }
 
 #footerSpan {
@@ -498,3 +546,143 @@ footer	{
 
 /* SNOW adjustment */
 #backgroundSnowCanvas {width:100%; height:100%;}
+
+/*Pagination*/
+
+#paginList {float: left;}
+
+.pagination {
+	padding-left: 27em;
+	border-radius: 4px;
+}
+
+.paginationExtras {
+	padding-left: 17em;
+	border-radius: 4px;
+}
+
+/*MoreInfo View*/
+
+#moreInfoTitle {
+	color:black;
+	text-align: center;
+	font-family: Verdana;
+}
+
+#mainDivMIPage {
+	border: 3px solid black;
+	margin: 15px;
+	padding: 10px;
+	border-radius: 15px;
+	background: #d9d9d9;
+	opacity: 0.9;
+	margin-bottom: 3em;
+}
+
+#moreInfoPictures {
+	display: inline-block;
+	float: left;
+}
+
+#moreInfoText{
+	float: left;
+	margin: auto;
+	padding: 13px 2px;
+	color: black;
+	font-size: large;
+	font-family: Verdana;
+}
+
+#moreInforMainIMG {
+	float:left;
+	padding:2px;
+	height:460px;
+	width:840px;
+}
+
+#moreInforIMGs {
+	float:left;
+	padding:2px;
+	height:120px;
+	width:180px;
+}
+
+#moreInfoExtras {
+	padding-left: 4px;
+	font-size: large;
+	font-family: Verdana;
+	clear: both;
+}
+
+#moreInfoPriceContacts {
+	color: black;
+	padding: 4px;
+	display: inline-block;
+	float: left;
+	font-size: large;
+	font-family: Verdana;
+	padding-bottom: 1em;
+}
+
+#moreInfoContactsAdjust {
+	padding-left: 20px;
+}
+
+#moreInfoExtrasLayout {padding-left: 20px;	color:#6c9f43;}
+
+/*Comments*/
+#commentsSection {padding-left: 6px;}
+
+#commentsDropDown {
+	font-family: Verdana;
+	font-size: large;
+}
+
+#moreInfoAuthorName {
+	color: #6c9f43;
+	font-size: small;
+}
+
+#comments{
+	margin-top: 20px;
+	overflow-wrap: break-word;
+	margin-right: 0.5em;
+	font-family: Verdana;
+}
+
+#commentsFieldSet {
+	padding: 1%;
+	top: 0.1em;
+}
+
+#inputComment {
+	resize: none;
+	width: 99.5%;
+	height: 10.5em;
+}
+
+#form-group-comments {margin-bottom: 0;}
+
+
+/* Articles Window */
+
+#articleSearchRezult {
+	color:black;
+	text-align: center;
+	font-family: "Verdana";
+}
+
+#articleImage {
+	width: 250px;
+	height: 250px;
+}
+
+#articlesContentInfo {
+	padding-left: 14.5em;
+	font-size: large;
+	font-family: "Verdana";
+}
+
+#articlesPrices {float: none; color:#fa0300; font-family: "Verdana";}
+
+#articlesInfos {float: none; margin: 20px; font-family: "Verdana";}

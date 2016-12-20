@@ -4,14 +4,19 @@ const encryption = require('./../../utilities/encryption')
 
 module.exports = {
   all: (req, res) => {
-    User.find({}).then(users => {
-      for (let user of users) {
+    let currPage = req.params.page || 1
+    User.paginate({}, {page: currPage, limit: 5}).then(result => {
+      for (let user of result.docs) {
         user.isInRole('Admin').then(isAdmin => {
           user.isAdmin = isAdmin
         })
       }
-
-      res.render('admin/user/all', {users: users})
+      //TODO create a function for this array creation
+      let pages = []
+      for (let i = 1; i <= result.pages; i++) {
+        pages.push(i)
+      }
+      res.render('admin/user/all', {users: result.docs, pages: pages, lastPage: result.pages})
     })
   },
   getEdit: (req, res) => {

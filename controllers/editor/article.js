@@ -16,7 +16,7 @@ module.exports = {
     let currPage = req.params.page || 1
     req.user.isInRole('Admin').then(isAdmin => {
       if (isAdmin) {
-        Article.paginate({}, {populate: 'author location', page: currPage, limit: 2}).then(result => {
+        Article.paginate({}, {populate: 'author location', page: currPage, limit: 5}).then(result => {
           //TODO create a function for this array creation
           let pages = []
           for (let i = 1; i <= result.pages; i++) {
@@ -24,12 +24,14 @@ module.exports = {
           }
           res.render('editor/article/all', {articles: result.docs, pages: pages, lastPage: result.pages})
         })
-        // Article.find().populate('author location').then(articles => {
-        //   res.render('editor/article/all', {articles: articles})
-        // })
       } else {
-        Article.find({author: req.user.id}).populate('author location').then(articles => {
-          res.render('editor/article/all', {articles: articles})
+        Article.paginate({author: req.user.id}, {populate: 'author location', page: currPage, limit: 2}).then(result => {
+          //TODO create a function for this array creation
+          let pages = []
+          for (let i = 1; i <= result.pages; i++) {
+            pages.push(i)
+          }
+          res.render('editor/article/all', {articles: result.docs, pages: pages, lastPage: result.pages})
         })
       }
     })
@@ -127,6 +129,7 @@ module.exports = {
         res.render('editor/article/create-step2', {articleArgs: articleArgs})
         return
       } else {
+        articleArgs.inputContactEmail = req.user.email
         res.render('editor/article/create-step4', {articleArgs: articleArgs})
         return
       }

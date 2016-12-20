@@ -1,35 +1,88 @@
-<div class="container body-content">
-    <div class="well">
-        <h1>{{ article.title }}</h1>
-        <br > All other details .... <br > <br >
-        Comments HERE!
-        {{#each article.comments}}
-            <div style="margin-top: 20px;">
-                {{ this.content }}
-                <div class="small" style="color: #ff8c17">
-                    By: {{ this.authorId.fullName }}
-                </div>
+<h2 id="moreInfoTitle">{{ article.title }}</h2>
+<div id="mainDivMIPage">
+    <div class="article-container" style="display: inline-block;">
+        <div id="moreInfoPictures">
+            <img src="/{{ article.firstImage }}" alt="Article pic" id="moreInforMainIMG">
+            {{#each article.images }}
+                <img src="/{{ this }}" alt="Article pic" id="moreInforIMGs">
+            {{/each}}
+        </div>
+        <br >
+        <div id="moreInfoText">
+            {{ article.description }}
+        </div>
+        <div>
+            <div id="moreInfoExtras">
+                <b>Extras: </b>
+                {{#each article.extras}}
+                    <b id="moreInfoExtrasLayout">{{this.name}}</b>
+                    <!-- <img src="./pics/AirCondition.png" alt="Article pic" height="22" width="28" class="wrap align-right"> !-->
+                {{/each}}
             </div>
-        {{/each}}
-        {{#if user}}
-            <form method="post" action="" class="form-horizontal">
-                <fieldset>
-                    <div class="form-group">
-                        <div class="col-sm-4">
-                            <textarea id="inputComment" name="inputComment" rows="5" cols="80"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">
-                            <button type="reset" class="btn btn-default">Clear</button>
+        </div>
+        <div id="moreInfoPriceContacts">
+            <p><b>Price: </b><b style="color:#6c9f43">{{article.price}} lv.</b></p>
+            <!-- <p><b>Adress:</b> Sofia, Sofia center, pl. Naradono sabranie 4, 1000 </p> !-->
+            <b>Phone: </b>{{ article.contactPhone}}
+            <b id="moreInfoContactsAdjust">E-mail: </b>{{ article.contactEmail }}
+            {{#if article.contactURL }}
+                <b id="moreInfoContactsAdjust">Web site:</b>
+                <a href="{{ article.contactURL }}" target="_blank">{{ article.contactURL }}</a>
+            {{/if}}
 
-                            <a href="" class="btn btn-primary" id="add-comment">Add Comment</a>
-                        </div>
+
+            <!--
+            <p><b>Rating:</b>&nbsp;&nbsp <span class="score">
+                    <input type="radio" id="score-5" name="score" value="5"/>
+                    <label title="5 stars" for="score-5">5 stars</label>
+
+                    <input type="radio" id="score-4" name="score" value="4"/>
+                    <label title="4 stars" for="score-4">4 stars</label>
+
+                    <input type="radio" id="score-3" name="score" value="3"/>
+                    <label title="3 stars" for="score-3">3 stars</label>
+
+                    <input type="radio" id="score-2" name="score" value="2"/>
+                    <label title="2 stars" for="score-2">2 stars</label>
+
+                    <input type="radio" id="score-1" name="score" value="1"/>
+                    <label title="1 stars" for="score-1">1 stars</label>
+                </span></p>!-->
+
+        </div>
+
+    </div>
+    <div id="commentsSection">
+        <details >
+            <summary id="commentsDropDown">Coments and more</summary>
+            {{#each article.comments}}
+                <div id="comments">
+                    {{ this.content }}
+                    <div id="moreInfoAuthorName">
+                        By: {{ this.authorId.fullName }}
                     </div>
-                    <input type="hidden" id="userID" value="{{ user.id }}">
-                </fieldset>
-            </form>
-        {{/if}}
+                </div>
+            {{/each}}
+            {{#if user}}
+                <form method="post" action="" class="form-horizontal" id="form-horizontal5">
+                    <fieldset id="commentsFieldSet">
+                        <div class="form-group" id="form-group-comments">
+                            <div class="col-sm-4">
+                                <textarea id="inputComment" name="inputComment" rows="5" cols="80"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <button type="reset" class="btn btn-default">Clear</button>
+
+                                <a href="" class="btn-primary2" id="add-comment">Add Comment</a>
+                            </div>
+                        </div>
+                        <input type="hidden" id="userID" value="{{ user.id }}">
+                    </fieldset>
+                </form>
+            {{/if}}
+        </details>
     </div>
 </div>
 <script type="text/javascript" src="/javascripts/commentAJAX.js"></script>

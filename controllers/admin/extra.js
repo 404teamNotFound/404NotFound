@@ -2,8 +2,14 @@ const Extra = require('mongoose').model('Extra')
 
 module.exports = {
   getExtrasAll: (req, res) => {
-    Extra.find({}).then(extras => {
-      res.render('admin/extra/all', {extras: extras})
+    let currPage = req.params.page || 1
+    Extra.paginate({}, {page: currPage, limit: 5}).then(result => {
+      //TODO create a function for this array creation
+      let pages = []
+      for (let i = 1; i <= result.pages; i++) {
+        pages.push(i)
+      }
+      res.render('admin/extra/all', {extras: result.docs, pages: pages, lastPage: result.pages})
     })
   },
   getExtraCreate: (req, res) => {

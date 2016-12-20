@@ -1,52 +1,35 @@
-<div class="container body-content span=8 offset=2">
-    <div class="well">
-        <form action="/editor/article/create/step/4" method="post" class="form-horizontal">
-            <fieldset>
-                <legend>Create new ######## - Final Step - Enter Contacts</legend>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">Email</label>
-                    <div class="col-sm-4 ">
-                        <input type="text" class="form-control" id="inputContactEmail" name="inputContactEmail" placeholder="Email"
-                               value="{{ articleArgs.inputContactEmail }}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">Phone Number</label>
-                    <div class="col-sm-4 ">
-                        <input type="text" class="form-control" id="inputContactPhone" name="inputContactPhone" placeholder="Phone number"
-                               value="{{ articleArgs.inputContactPhone }}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">Web Site</label>
-                    <div class="col-sm-4 ">
-                        <input type="text" class="form-control" id="inputContactWebSite" name="inputContactWebSite" placeholder="Web Site"
-                               value="{{ articleArgs.inputContactWebSite }}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-4 col-sm-offset-4">
+<main>
+    <form class="form-horizontal" id="form-horizontal4" method="post" action="/editor/article/create/step/4" autocomplete="on">
+        <fieldset id="createArticleStep4">
+            <legend id="createArticleExtras4">Create new Article - Enter Contacts</legend>
+            <label for="inputEmail">Email</label>
+            <input type="text" class="form-control" id="inputContactEmail" placeholder="Email"
+                   name="inputContactEmail" value="{{ articleArgs.inputContactEmail }}" autofocus required>
 
-                        <button type="submit" class="btn btn-primary" name="back" value="back">Back</button>
+            <label for="inputPhone">Phone Number</label>
+            <input type="text" class="form-control" id="inputContactPhone" placeholder="Phone number" required
+                   name="inputContactPhone" value="{{ articleArgs.inputContactPhone }}">
 
-                        <a class="btn btn-default" href="/editor/article/all">Cancel</a>
+            <label for="inputWebSite">Web Site</label>
+            <input type="text" class="form-control" id="inputContactWebSite" placeholder="Web Site"
+                   name="inputContactWebSite" value="{{ articleArgs.inputContactWebSite }}">
 
-                        <button type="submit" class="btn btn-primary">Finish</button>
-
-                        <input type="hidden" name="inputTitle" value="{{ articleArgs.inputTitle }}">
-                        <input type="hidden" name="inputPrice" value="{{ articleArgs.inputPrice }}">
-                        <input type="hidden" name="inputLocation" value="{{ articleArgs.inputLocation }}">
-                        <input type="hidden" name="inputDescription" value="{{ articleArgs.inputDescription }}">
-                        {{#each articleArgs.inputImages}}
-                            <input type="hidden" name="inputImages" value="{{ this }}">
-                        {{/each}}
-                        {{#each articleArgs.inputExtras}}
-                            <input type="hidden" name="inputExtras" value="{{ this }}">
-                        {{/each}}
-                        <input type="hidden" name="id" value="{{ articleArgs.id }}">
-                    </div>
-                </div>
-            </fieldset>
-        </form>
-    </div>
-</div>
+            <div class="form-group">
+                <button type="submit" class="btn-primary1" name="back" value="back">Back</button>
+                <a href="/editor/article/all" class="btn-default" id="btn-default">Cancel</a>
+                <button type="submit" class="btn-primary" id="btn-primary">Create</button>
+                <input type="hidden" name="inputTitle" value="{{ articleArgs.inputTitle }}">
+                <input type="hidden" name="inputPrice" value="{{ articleArgs.inputPrice }}">
+                <input type="hidden" name="inputLocation" value="{{ articleArgs.inputLocation }}">
+                <input type="hidden" name="inputDescription" value="{{ articleArgs.inputDescription }}">
+                {{#each articleArgs.inputImages}}
+                    <input type="hidden" name="inputImages" value="{{ this }}">
+                {{/each}}
+                {{#each articleArgs.inputExtras}}
+                    <input type="hidden" name="inputExtras" value="{{ this }}">
+                {{/each}}
+                <input type="hidden" name="id" value="{{ articleArgs.id }}">
+            </div>
+        </fieldset>
+    </form>
+</main>
