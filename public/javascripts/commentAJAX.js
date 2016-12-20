@@ -7,11 +7,17 @@ function uploadComment(dataObj) {
   }).done(handleSuccess);
 }
 
-function handleSuccess(dataObj) {
-  alert('SUCCESS')
+function handleSuccess(result) {
+  //result.comment
+  //result.author
+  let html = '<div id="comments">' + result.comment + '<div id="moreInfoAuthorName">By: ' +
+    result.author + '</div></div>';
+  $('#allComments').append(html)
+  document.getElementById("form-horizontal5").reset();
 }
 
-$('#add-comment').on('click', function () {
+$('#add-comment').on('click', function (event) {
+  event.preventDefault()
   let pageURL = window.location.href
   let splitURL = pageURL.split('/')
   let articleId = splitURL[splitURL.length - 1]

@@ -5,6 +5,7 @@ const Comment = require('mongoose').model('Comment')
 let articleSchema = mongoose.Schema(
   {
     title: {type: String, required: true},
+    address: {type: String, required: true},
     price: {type: Number, required: true},
     location: {type: mongoose.Schema.Types.ObjectId, ref: 'Location'},
     description: {type: String, required: true},

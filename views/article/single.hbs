@@ -53,16 +53,18 @@
 
     </div>
     <div id="commentsSection">
-        <details >
+        <details>
             <summary id="commentsDropDown">Coments and more</summary>
-            {{#each article.comments}}
-                <div id="comments">
-                    {{ this.content }}
-                    <div id="moreInfoAuthorName">
-                        By: {{ this.authorId.fullName }}
+            <div id="allComments">
+                {{#each article.comments}}
+                    <div id="comments">
+                        {{ this.content }}
+                        <div id="moreInfoAuthorName">
+                            By: {{ this.authorId.fullName }}
+                        </div>
                     </div>
-                </div>
-            {{/each}}
+                {{/each}}
+            </div>
             {{#if user}}
                 <form method="post" action="" class="form-horizontal" id="form-horizontal5">
                     <fieldset id="commentsFieldSet">
