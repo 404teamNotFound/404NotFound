@@ -53,6 +53,7 @@ module.exports = {
             let articleArgs = {
               id: article.id,
               inputTitle: article.title,
+              inputAddress: article.address,
               inputPrice: article.price,
               inputLocation: article.location.name,
               inputDescription: article.description,
@@ -167,6 +168,7 @@ module.exports = {
           //TODO VALIDATE ALL FIELDS AND CREATE ARTICLE
           let articleObj = {
             title: articleArgs.inputTitle,
+            address: articleArgs.inputAddress,
             price: articleArgs.inputPrice,
             description: articleArgs.inputDescription,
             contactEmail: articleArgs.inputContactEmail,
