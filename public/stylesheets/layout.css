@@ -237,6 +237,7 @@ center p {
 	#album {left: 14.5em!important; bottom: 2.5em!important;}
 	#form-horizontal1{height: 34.5em!important;}
 	#form-horizontal3{height: 37.5em!important;}
+	#form-horizontal5 {height: 18em; margin: 30px auto auto auto; width: 100%;}
 }
 
 @media screen and (max-width: 1370px) and (min-width: 860px) {
@@ -331,7 +332,7 @@ label {
 	margin-bottom: 30px;
 }
 
-.btn-primary, #btn-primary, .btn-primary1 {
+.btn-primary, #btn-primary, .btn-primary1, .btn-primary2 {
     width: 100%;
     background-color: #6c9f43;
     color: white;
@@ -346,6 +347,7 @@ label {
     cursor: pointer;
 	box-shadow: inset 0 1px 3px #ddd;
 }
+.btn-primary2 {padding: 14px 40.97em; text-decoration: none;}
 
 .btn-primary1 {margin-bottom:2.5em; margin-top:47px; margin-left:0; margin-right: 0;}
 
@@ -356,7 +358,7 @@ label {
     margin: 33px 0px 0px 0px;
 }
 
-.btn-default:hover, .btn-primary:hover, #btn-primary:hover, #btn-default:hover, .btn-primary1:hover {
+.btn-default:hover, .btn-primary:hover, #btn-primary:hover, #btn-default:hover, .btn-primary1:hover, .btn-primary2:hover {
     background-color: #111111;
 }
 
@@ -518,7 +520,7 @@ footer	{
 	display: inline-block;
 	position: relative;
     bottom: 1.8em;
-	font-family:verdana;
+	font-family: verdana;
 }
 
 #footerSpan {
@@ -549,3 +551,32 @@ footer	{
 	padding-left: 17em;
 	border-radius: 4px;
 }
+
+/*MoreInfo View*/
+
+#moreInfoTitle {
+	color:black;
+	text-align: center;
+	font-family: Tahoma;
+}
+
+/*Comments*/
+
+#comments{
+	margin-top: 20px;
+	overflow-wrap: break-word;
+	margin-right: 0.5em;
+}
+
+#commentsFieldSet {
+	padding: 1%;
+	top: 0.1em;
+}
+
+#inputComment {
+	resize: none;
+	width: 99.5%;
+	height: 10.5em;
+}
+
+#form-group-comments {margin-bottom: 0;}

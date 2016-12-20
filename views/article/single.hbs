@@ -1,4 +1,4 @@
-<h2 style="color:black; text-align: center; font-family: 'Tahoma';">{{ article.title }}</h2>
+<h2 id="moreInfoTitle">{{ article.title }}</h2>
 <div style="border: 4px ridge grey; margin: 15px; padding: 10px; border-radius: 15px; background: snow">
     <div class="article-container" style="display: inline-block;">
         <div style="display: inline-block; float: left; ">
@@ -54,10 +54,10 @@
 
     </div>
     <div style="padding-left: 10px">
-        <details style="font-size: large">
+        <details >
             <summary>Coments and more</summary>
             {{#each article.comments}}
-                <div style="margin-top: 20px;">
+                <div id="comments">
                     {{ this.content }}
                     <div style="color: #ff8c17;font-size: small;">
                         By: {{ this.authorId.fullName }}
@@ -65,9 +65,9 @@
                 </div>
             {{/each}}
             {{#if user}}
-                <form method="post" action="" class="form-horizontal">
-                    <fieldset>
-                        <div class="form-group">
+                <form method="post" action="" class="form-horizontal" id="form-horizontal5">
+                    <fieldset id="commentsFieldSet">
+                        <div class="form-group" id="form-group-comments">
                             <div class="col-sm-4">
                                 <textarea id="inputComment" name="inputComment" rows="5" cols="80"></textarea>
                             </div>
@@ -76,7 +76,7 @@
                             <div class="col-sm-4">
                                 <button type="reset" class="btn btn-default">Clear</button>
 
-                                <a href="" class="btn btn-primary" id="add-comment">Add Comment</a>
+                                <a href="" class="btn-primary2" id="add-comment">Add Comment</a>
                             </div>
                         </div>
                         <input type="hidden" id="userID" value="{{ user.id }}">
