@@ -44,8 +44,8 @@
 		});
 		$('#date3').DatePicker({
 			flat: true,
-			date: ['2009-12-28','2010-01-23'],
-			current: '2010-01-01',
+			date: ['2016-12-28','2017-01-23'],
+			current: '2017-01-01',
 			calendars: 3,
 			mode: 'range',
 			starts: 1
