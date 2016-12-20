@@ -234,10 +234,11 @@ center p {
 	#footer {left: 37%!important;}
 	#createArticleStep1, #createArticleStep2, #createArticleStep3{top:-2em!important;}
 	#createArticleStep4 {top: -1em;}
-	#album {left: 14.5em!important; bottom: 2.5em!important;}
+	#album {left: 13.5em!important; bottom: 4.5em!important;}
 	#form-horizontal1{height: 34.5em!important;}
 	#form-horizontal3{height: 37.5em!important;}
 	#form-horizontal5 {height: 18em; margin: 30px auto auto auto; width: 100%; right: 3px;}
+	.btn-primary2 { padding: 14px 41.1em!important;}
 }
 
 @media screen and (max-width: 1370px) and (min-width: 860px) {
@@ -248,6 +249,14 @@ center p {
 	#createArticleExtras4 {font-size: 3em;}
 }
 
+@media screen and (min-width: 1370px) {
+	#form-horizontal5 {height: 18em; margin: 30px auto auto auto; width: 100%; right: 3px;}
+}
+
+@media screen and (min-width: 1370px) {
+	.centerPagin {width: 90.2em;}
+	.pagination {padding-left: 38em!important;}
+}
 /* @MEDIA QUERIES - Login/Register - END */
 
 #form-horizontal{height: 48.5em;}
@@ -316,7 +325,7 @@ label {
 	text-decoration: none;
 	position: relative;
 	display: inline-block;
-	width: 100%;
+	width: 99.87%;
 	text-align: center;
 	box-shadow: inset 0 1px 3px #ddd;
 	font-family: verdana;
@@ -347,7 +356,7 @@ label {
     cursor: pointer;
 	box-shadow: inset 0 1px 3px #ddd;
 }
-.btn-primary2 {padding: 14px 41.18em; text-decoration: none;}
+.btn-primary2 {padding: 14px 60.54em; text-decoration: none;}
 
 .btn-primary1 {margin-bottom:2.5em; margin-top:47px; margin-left:0; margin-right: 0;}
 
@@ -374,13 +383,13 @@ span{float:right}
 #album{
 	position: absolute;
 	left: 29em;
-	bottom: 4em;
+	bottom: 5.5em;
 }
 
 .col-md-4 {
 	padding: 0 6px;
 	float: left;
-	width: 17%;
+	width: 17.5%;
 	box-sizing: border-box;
 }
 
@@ -602,6 +611,7 @@ footer	{
 	padding-left: 4px;
 	font-size: large;
 	font-family: Verdana;
+	clear: both;
 }
 
 #moreInfoPriceContacts {
@@ -670,8 +680,9 @@ footer	{
 #articlesContentInfo {
 	padding-left: 14.5em;
 	font-size: large;
+	font-family: "Verdana";
 }
 
-#articlesPrices {float: none; color:#fa0300;}
+#articlesPrices {float: none; color:#fa0300; font-family: "Verdana";}
 
-#articlesInfos {float: none; margin: 20px;}
+#articlesInfos {float: none; margin: 20px; font-family: "Verdana";}
