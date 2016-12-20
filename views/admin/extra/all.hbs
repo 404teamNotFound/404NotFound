@@ -26,12 +26,12 @@
                 </tbody>
             </table>
             <div class="centerPagin">
-                <ul class="pagination">
-                    <li><a href="/admin/extra/all/page/1">«</a></li>
+                <ul class="paginationExtras">
+                    <li id="paginList"><a href="/admin/extra/all/page/1">«</a></li>
                     {{#each pages}}
-                        <li><a href="/admin/extra/all/page/{{this}}">{{this}}</a></li>
+                        <li id="paginList"><a href="/admin/extra/all/page/{{this}}">{{this}}</a></li>
                     {{/each}}
-                    <li><a href="/admin/extra/all/page/{{lastPage}}">»</a></li>
+                    <li id="paginList"><a href="/admin/extra/all/page/{{lastPage}}">»</a></li>
                 </ul>
             </div>
         </div>

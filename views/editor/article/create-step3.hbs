@@ -1,41 +1,32 @@
-<div class="container body-content span=8 offset=2">
-    <div class="well">
-        <form action="/editor/article/create/step/3" method="post" class="form-horizontal">
-            <fieldset>
-                <legend>Create new ######## - STEP 3 - Add Extras</legend>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="role">Extras</label>
-                    {{#each extras}}
-                        <div class="col-sm-4">
-                            <input type="checkbox" id="role" name="inputExtras" value="{{ this.id }}"
-                                {{#if this.checked }} checked {{/if}}/>
-                            {{ this.name }}
-                        </div>
-                    {{/each}}
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-4 col-sm-offset-4">
+<main>
+    <form class="form-horizontal" id="form-horizontal3" method="post" action="/editor/article/create/step/3" autocomplete="on">
+        <fieldset id="createArticleStep3">
+            <legend id="createArticleExtras3">Create new Article - Add Extras</legend>
+            <label for="inputExtras">Extras</label>
 
-                        <button type="submit" class="btn btn-primary" name="back" value="back">Back</button>
+                {{#each extras}}
+            <div id="checkboxes">
+                <span><input type="checkbox" id="role" name="inputExtras" value="{{ this.id }}"{{#if this.checked }} checked {{/if}}/>{{ this.name }}</input></span>
+            </div>
+                {{/each}}
 
-                        <a class="btn btn-default" href="/editor/article/all">Cancel</a>
+            <div class="form-group" id="form-group2" >
+                <button type="submit" class="btn-primary1" name="back" value="back">Back</button>
+                <a href="/editor/article/all" class="btn-default" id="btn-default">Cancel</a>
+                <button type="submit" class="btn-primary" id="btn-primary">Next</button>
 
-                        <button type="submit" class="btn btn-primary">Next</button>
-
-                        <input type="hidden" name="inputTitle" value="{{ articleArgs.inputTitle }}">
-                        <input type="hidden" name="inputPrice" value="{{ articleArgs.inputPrice }}">
-                        <input type="hidden" name="inputLocation" value="{{ articleArgs.inputLocation }}">
-                        <input type="hidden" name="inputDescription" value="{{ articleArgs.inputDescription }}">
-                        {{#each articleArgs.inputImages}}
-                            <input type="hidden" name="inputImages" value="{{ this }}">
-                        {{/each}}
-                        <input type="hidden" name="inputContactEmail" value="{{ articleArgs.inputContactEmail }}">
-                        <input type="hidden" name="inputContactPhone" value="{{ articleArgs.inputContactPhone }}">
-                        <input type="hidden" name="inputContactWebSite" value="{{ articleArgs.inputContactWebSite }}">
-                        <input type="hidden" name="id" value="{{ articleArgs.id }}">
-                    </div>
-                </div>
-            </fieldset>
-        </form>
-    </div>
-</div>
+                <input type="hidden" name="inputTitle" value="{{ articleArgs.inputTitle }}">
+                <input type="hidden" name="inputPrice" value="{{ articleArgs.inputPrice }}">
+                <input type="hidden" name="inputLocation" value="{{ articleArgs.inputLocation }}">
+                <input type="hidden" name="inputDescription" value="{{ articleArgs.inputDescription }}">
+                {{#each articleArgs.inputImages}}
+                    <input type="hidden" name="inputImages" value="{{ this }}">
+                {{/each}}
+                <input type="hidden" name="inputContactEmail" value="{{ articleArgs.inputContactEmail }}">
+                <input type="hidden" name="inputContactPhone" value="{{ articleArgs.inputContactPhone }}">
+                <input type="hidden" name="inputContactWebSite" value="{{ articleArgs.inputContactWebSite }}">
+                <input type="hidden" name="id" value="{{ articleArgs.id }}">
+            </div>
+        </fieldset>
+    </form>
+</main>

@@ -1,46 +1,45 @@
-<div class="container body-content">
+<main>
     <div class="well">
         <h2>
-            {{#if isAdmin}}
-                All Articles -
-            {{else}}
-                My Articles -
-            {{/if}}
-            <a href="/editor/article/create/step/1" class="btn btn-warning">Create New</a>
+        {{#if isAdmin}}
+            All Articles -
+        {{else}}
+            My Articles -
+        {{/if}}
+            <a href="/editor/article/create/step/1" class="btnCreateNew">Create New</a>
         </h2>
         <div class="row">
             <table class="table table-striped table-hover ">
                 <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Location</th>
-                    <th>Author</th>
-                    <th>Actions</th>
+                    <th id="thIda">Title</th>
+                    <th id="thId2a">Location</th>
+                    <th id="thId3">Author</th>
                 </tr>
                 </thead>
                 <tbody>
                 {{#each articles}}
-                    <tr>
-                        <td>{{ this.title }}</td>
-                        <td>{{ this.location.name }}</td>
-                        <td>{{ this.author.email }}</td>
-                        <td>
-                            <a href="/editor/article/edit/{{this.id}}/step/1">Edit</a>
-                            <a  href="/editor/article/delete/{{this.id}}">Delete</a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>{{ this.title }}</td>
+                    <td>{{ this.location.name }}</td>
+                    <td>{{ this.author.email }}</td>
+                    <td id="tdNoBgColor">
+                        <a id="extrasEditBt" href="/editor/article/edit/{{this.id}}/step/1">Edit</a>
+                        <a id="extrasDeleteBt" href="/editor/article/delete/{{this.id}}">Delete</a>
+                    </td>
+                </tr>
                 {{/each}}
                 </tbody>
             </table>
-        </div>
-        <div class="centerPagin">
-            <ul class="pagination">
-                <li><a href="/editor/article/all/page/1">«</a></li>
-                {{#each pages}}
-                    <li><a href="/editor/article/all/page/{{this}}">{{this}}</a></li>
-                {{/each}}
-                <li><a href="/editor/article/all/page/{{lastPage}}">»</a></li>
-            </ul>
+            <div class="centerPagin">
+                <ul class="pagination">
+                    <li id="paginList"><a href="/editor/article/all/page/1">«</a></li>
+                    {{#each pages}}
+                        <li id="paginList"><a href="/editor/article/all/page/{{this}}">{{this}}</a></li>
+                    {{/each}}
+                    <li id="paginList"><a href="/editor/article/all/page/{{lastPage}}">»</a></li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
+</main>

@@ -1,55 +1,34 @@
-<div class="container body-content span=8 offset=2">
-    <div class="well">
-        <form action="/editor/article/create/step/1" method="post" class="form-horizontal">
-            <fieldset>
-                <legend>Create new ######## - STEP 1 - Enter Details</legend>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">Title</label>
-                    <div class="col-sm-4 ">
-                        <input type="text" class="form-control" id="inputTitle" name="inputTitle" placeholder="Title"
-                               value="{{ articleArgs.inputTitle }}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">Price</label>
-                    <div class="col-sm-4 ">
-                        <input type="text" class="form-control" id="inputPrice" name="inputPrice" placeholder="Price"
-                               value="{{ articleArgs.inputPrice }}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">Location</label>
-                    <div class="col-sm-4 ">
-                        <input type="text" class="form-control" id="inputLocation" name="inputLocation" placeholder="Location"
-                               value="{{ articleArgs.inputLocation }}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">Description</label>
-                    <div class="col-sm-4">
-                        <textarea class="form-control" rows="5" name="inputDescription">{{ articleArgs.inputDescription }}</textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-4 col-sm-offset-4">
+<main>
+    <form class="form-horizontal" id="form-horizontal2" method="post" action="/editor/article/create/step/1" autocomplete="on">
+        <fieldset id="createArticleStep1">
+            <legend id="createArticleLegend">Create new Article - Enter Details</legend>
+            <label for="inputTitle">Title</label>
+            <input type="text" class="form-control" id="inputTitle" placeholder="Title" name="inputTitle" value="{{ articleArgs.inputTitle }}" autofocus required>
 
-                        <a class="btn btn-default" href="/editor/article/all">Cancel</a>
+            <label for="inputPrice">Price</label>
+            <input type="text" class="form-control" id="inputPrice" placeholder="Price" required name="inputPrice" value="{{ articleArgs.inputPrice }}">
 
-                        <button type="submit" class="btn btn-primary">Next</button>
+            <label for="inputLocation">Location</label>
+            <input type="text" class="form-control" id="inputLocation" placeholder="Location" required name="inputLocation" value="{{ articleArgs.inputLocation }}">
 
-                        {{#each articleArgs.inputImages}}
-                            <input type="hidden" name="inputImages" value="{{ this }}">
-                        {{/each}}
-                        {{#each articleArgs.inputExtras}}
-                            <input type="hidden" name="inputExtras" value="{{ this }}">
-                        {{/each}}
-                        <input type="hidden" name="inputContactEmail" value="{{ articleArgs.inputContactEmail }}">
-                        <input type="hidden" name="inputContactPhone" value="{{ articleArgs.inputContactPhone }}">
-                        <input type="hidden" name="inputContactWebSite" value="{{ articleArgs.inputContactWebSite }}">
-                        <input type="hidden" name="id" value="{{ articleArgs.id }}">
-                    </div>
-                </div>
-            </fieldset>
-        </form>
-    </div>
-</div>
+            <label for="Description">Description</label>
+            <textarea class="form-control" id="inputDescription" rows="5" required name="inputDescription">{{ articleArgs.inputDescription }}</textarea>
+
+            <div class="form-group">
+                <a class="btn-default" id="btn-default" href="/editor/article/all">Cancel</a>
+                <button type="submit" class="btn-primary" id="btn-primary">Next</button>
+
+                {{#each articleArgs.inputImages}}
+                    <input type="hidden" name="inputImages" value="{{ this }}">
+                {{/each}}
+                {{#each articleArgs.inputExtras}}
+                    <input type="hidden" name="inputExtras" value="{{ this }}">
+                {{/each}}
+                <input type="hidden" name="inputContactEmail" value="{{ articleArgs.inputContactEmail }}">
+                <input type="hidden" name="inputContactPhone" value="{{ articleArgs.inputContactPhone }}">
+                <input type="hidden" name="inputContactWebSite" value="{{ articleArgs.inputContactWebSite }}">
+                <input type="hidden" name="id" value="{{ articleArgs.id }}">
+            </div>
+        </fieldset>
+    </form>
+</main>
