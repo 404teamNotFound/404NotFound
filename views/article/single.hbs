@@ -4,7 +4,7 @@
         <div id="moreInfoPictures">
             <img src="/{{ article.firstImage }}" alt="Article pic" id="moreInforMainIMG">
             {{#each article.images }}
-                <img src="/{{ this }}" alt="Article pic" id="moreInforIMGs">
+                <img src="/{{ this }}" alt="Article pic" id="moreInforIMGs" class="madafaka">
             {{/each}}
         </div>
         <br >
@@ -87,4 +87,5 @@
         </details>
     </div>
 </div>
+<script type="text/javascript" src="/javascripts/changePics.js"></script>
 <script type="text/javascript" src="/javascripts/commentAJAX.js"></script>
