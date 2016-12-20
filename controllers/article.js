@@ -62,9 +62,13 @@ module.exports = {
             if (err) {
               //TODO send result with error code to AJAX function
             } else {
+              let result = {
+                author: req.user.fullName,
+                comment: comment.content
+              }
               res.type('json')
               res.status(200)
-              res.send(comment)
+              res.send(result)
             }
           })
         } else {
