@@ -92,10 +92,16 @@ module.exports = {
   },
   postDelete: (req, res) => {
     let id = req.params.id
-
-    User.findOneAndRemove({_id: id}).then(user => {
-      user.prepareDelete()
-      res.redirect('/admin/user/all')
-    })
+    if (req.user.id === id) {
+      let errorMsg = 'Please do NOT try to delete yourself!'
+      User.findById(id).then(user => {
+        res.render('admin/user/delete', {userToDelete: user, error: errorMsg})
+      })
+    } else {
+      User.findOneAndRemove({_id: id}).then(user => {
+        user.prepareDelete()
+        res.redirect('/admin/user/all')
+      })
+    }
   }
 }

@@ -5,15 +5,19 @@
             <table class="table table-striped table-hover ">
                 <thead>
                 <tr>
-                    <th id="thIda">#</th>
+                    <th id="thIda">isAdmin</th>
                     <th id="thId2a">Full Name</th>
                     <th id="thId3">Email</th>
                 </tr>
                 </thead>
                 <tbody>
                 {{#each users}}
-                    <tr {{#if this.isAdmin }}class="info" {{/if}}>
-                        <td>{{ this.id }}</td>
+                    <tr>
+                        <td>
+                            {{#if this.isAdmin }}
+                                <img src="/images/admin.png" alt="ADMIN" width="60" height="60"/>
+                            {{/if}}
+                        </td>
                         <td>{{ this.fullName }}</td>
                         <td>{{ this.email }}</td>
                         <td id="tdNoBgColor">
