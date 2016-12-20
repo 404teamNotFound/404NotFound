@@ -1,35 +1,63 @@
-<div class="container body-content">
-    <div class="well">
-        <h1>{{ article.title }}</h1>
-        <br > All other details .... <br > <br >
-        Comments HERE!
-        {{#each article.comments}}
-            <div style="margin-top: 20px;">
-                {{ this.content }}
-                <div class="small" style="color: #ff8c17">
-                    By: {{ this.authorId.fullName }}
-                </div>
+<h2 style="color:black; text-align: center; font-family: 'Tahoma';">{{ article.title }}</h2>
+<div style="border: 4px ridge grey; margin: 15px; padding: 10px; border-radius: 15px; background: snow">
+    <div class="article-container" style="display: inline-block;">
+        <div style="display: inline-block; float: left; ">
+            <img src="/{{ article.firstImage }}" alt="Article pic" style="float:left;padding:2px;height:460px;width:840px;">
+            {{#each article.images }}
+                <img src="/{{ this }}" alt="Article pic" style="float:left;padding:2px;height:120px;width:180px;">
+            {{/each}}
+        </div>
+        <br >
+        <div style="float: left; margin: auto; padding: 10px; color:black; font-size: large">
+            {{ article.description }}
+        </div>
+        <div>
+            <div style="padding-left: 10px; font-size: large">
+                <b>Extras: </b>
+                {{#each article.extras}}
+                    <b style="padding-left: 20px;color:#0e6f5c;">{{this.name}}</b>
+                    <!-- <img src="./pics/AirCondition.png" alt="Article pic" height="22" width="28" class="wrap align-right"> !-->
+                {{/each}}
             </div>
-        {{/each}}
-        {{#if user}}
-            <form method="post" action="" class="form-horizontal">
-                <fieldset>
-                    <div class="form-group">
-                        <div class="col-sm-4">
-                            <textarea id="inputComment" name="inputComment" rows="5" cols="80"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">
-                            <button type="reset" class="btn btn-default">Clear</button>
+        </div>
+        <div style=" color: black; padding: 10px; display:inline-block; float: left; font-size: large">
+            <p><b>Price: </b><b style="color:#0e6f5c">{{article.price}} lv.</b></p>
+            <!-- <p><b>Adress:</b> Sofia, Sofia center, pl. Naradono sabranie 4, 1000 </p> !-->
+            <b>Contacts:</b>
+            <b style="padding-left: 20px">Phone: </b>{{ article.contactPhone}}
+            <b style="padding-left: 20px">E-mail:</b>{{ article.contactEmail }}
+            {{#if article.contactURL }}
+                <b style="padding-left: 20px">Web site:</b>
+                <a href="{{ article.contactURL }}" target="_blank">{{ article.contactURL }}</a>
+            {{/if}}
 
-                            <a href="" class="btn btn-primary" id="add-comment">Add Comment</a>
-                        </div>
-                    </div>
-                    <input type="hidden" id="userID" value="{{ user.id }}">
-                </fieldset>
-            </form>
-        {{/if}}
+
+            <!--
+            <p><b>Rating:</b>&nbsp;&nbsp <span class="score">
+                    <input type="radio" id="score-5" name="score" value="5"/>
+                    <label title="5 stars" for="score-5">5 stars</label>
+
+                    <input type="radio" id="score-4" name="score" value="4"/>
+                    <label title="4 stars" for="score-4">4 stars</label>
+
+                    <input type="radio" id="score-3" name="score" value="3"/>
+                    <label title="3 stars" for="score-3">3 stars</label>
+
+                    <input type="radio" id="score-2" name="score" value="2"/>
+                    <label title="2 stars" for="score-2">2 stars</label>
+
+                    <input type="radio" id="score-1" name="score" value="1"/>
+                    <label title="1 stars" for="score-1">1 stars</label>
+                </span></p>!-->
+
+        </div>
+
+    </div>
+    <div style="padding-left: 10px">
+        <details>
+            <summary style="color: black;font-size: large">Coments and more</summary>
+            <p style="color: black;font-size: large">write more infos</p>
+        </details>
     </div>
 </div>
 <script type="text/javascript" src="/javascripts/commentAJAX.js"></script>

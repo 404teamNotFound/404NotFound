@@ -31,8 +31,10 @@ module.exports = {
         path: 'authorId',
         model: 'User'
       }
-    }).populate('author location').then(article => {
+    }).populate('author location extras').then(article => {
       if (article) {
+        article.firstImage = article.images[0] || 'images/article/404.png'
+        article.images.splice(0, 1)
         res.render('article/single', {article : article})
       } else {
         //TODO 404 page
